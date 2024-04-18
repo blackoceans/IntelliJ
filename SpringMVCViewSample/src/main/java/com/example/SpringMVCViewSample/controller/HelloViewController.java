@@ -17,4 +17,5 @@ public class HelloViewController {
     }
 }
 
-//문제 http://localhost:8080/hello/view2를 입력하면 morning이 출력되게
+//문제 http://localhost:8080/hello/view2를 입력하면 morning이 출력되게 = @GetMapping("view2") 이후 hello.html의 h1 수정
+//문제 http://localhost:8080/hello/view2 또는 view를 입력하면 morning이 출력되게 = @RequestMapping(value = {"hello", "hellospring"}) 요런식으로
