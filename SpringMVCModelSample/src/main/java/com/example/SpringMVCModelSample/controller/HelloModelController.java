@@ -14,8 +14,8 @@ public class HelloModelController {
     public String helloView(Model model) {
         model.addAttribute("msg","타임리프");
         model.addAttribute("name","길동");
-        //return "helloThymeleaf";
-        return "useThymeleaf";
+        return "helloThymeleaf";
+        //return "useThymeleaf";
     }
 
     //http://localhost:8080/hello/bbbbb 치면 나온다
