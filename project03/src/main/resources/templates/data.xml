@@ -1,0 +1,17 @@
+﻿<people>
+	<person>
+		<no>0001</no>
+		<name>Oh Yunseok</name>
+		<mail>example1@example.com</mail>
+	</person>
+	<person>
+		<no>0002</no>
+		<name>Kim Sarang</name>
+		<mail>example2@example.com</mail>
+	</person>
+	<person>
+		<no>0003</no>
+		<name>Oh Hyeseong</name>
+		<mail>example3@example.com</mail>
+	</person>
+</people>

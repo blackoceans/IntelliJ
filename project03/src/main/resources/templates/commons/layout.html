@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>layout</title>
+</head>
+<body>
+<!--공통머리글-->
+<div id="headerWrap" class="cf">
+  <header id="header">
+    <nav class="mainTopMenu cf">
+      <ol>
+        <li id="cityHallLogo" class="showBalloon" title="메인 페이지"><a href="index.html" tabindex="1"><img src="images/CityhallLogo.png" alt="시청 메인 로고"/></a></li> <!-- 선택자 우선 -->
+        <li class="showBalloon" title="서울소식"><a href="qnaboard" tabindex="2">서울소식</a>
+          <div class="twoMenu">
+            <div class="twoDepth cf">
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="새소식"><a href="login" tabindex="3">새소식</a></li>
+                <li class="marginTop20 showBalloon" title="분야별 새소식"><a href="qnaboard" tabindex="4">분야별 새소식</a></li>
+                <li class="showBalloon" title="이달의 행사 및 축제"><a href="qnaboard" tabindex="5">이달의 행사 및 축제</a></li>
+                <li class="showBalloon" title="이벤트 신청"><a href="login" tabindex="6">이벤트 신청</a></li>
+                <li class="showBalloon" title="자치구 주요뉴스"><a href="board" tabindex="7">자치구 주요뉴스</a></li>
+                <li class="showBalloon" title="강좌교육"><a href="login" tabindex="8">강좌교육</a></li>
+                <li class="showBalloon" title="인사발령"><a href="qnaboard" tabindex="9">인사발령</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="서울시 정책뉴스"><a href="board" tabindex="10">서울시 정책 뉴스</a></li>
+                <li class="marginTop20 showBalloon" title="News"><a href="login" tabindex="11">News</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="공고안내"><a href="login" tabindex="12">공고·안내</a></li>
+                <li class="marginTop20 showBalloon" title="입찰공고"><a href="qnaboard" tabindex="13">입찰공고</a></li>
+                <li class="showBalloon" title="수의계약내역"><a href="board" tabindex="14">수의계약내역</a></li>
+                <li class="showBalloon" title="채용시험"><a href="login" tabindex="15">채용시험</a></li>
+                <li class="showBalloon" title="서울시보"><a href="qnaboard" tabindex="16">서울시보</a></li>
+                <li class="showBalloon" title="고시공고"><a href="board" tabindex="17">고시공고</a></li>
+                <li class="showBalloon" title="도시관리계획안 열람공고"><a href="login" tabindex="18">도시관리계획안 열람공고</a></li>
+                <li class="showBalloon" title="석면해체·제거일정"><a href="qnaboard" tabindex="19">석면해체·제거일정</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="보도·해명자료"><a href="qnaboard" tabindex="20">보도·해명자료</a></li>
+                <li class="marginTop20 showBalloon" title="보도자료"><a href="board" tabindex="21">보도자료</a></li>
+                <li class="showBalloon" title="해명자료"><a href="login" tabindex="22">해명자료</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="내손안에서울"><a href="qnaboard" tabindex="23">내 손안의 서울</a></li>
+                <li class="marginTop20 showBalloon" title="뉴스"><a href="login" tabindex="24">뉴스</a></li>
+                <li class="showBalloon" title="영상"><a href="qnaboard" tabindex="25">영상</a></li>
+                <li class="showBalloon" title="매거진"><a href="board" tabindex="26">매거진</a></li>
+                <li class="showBalloon" title="어린이 신문"><a href="login" tabindex="27">어린이 신문</a></li>
+              </ul>
+              <ul class="menuRightLine cf">
+                <li class="marginTop20 showBalloon" title="서울사랑"><a href="board" tabindex="28">서울사랑</a></li>
+                <li class="marginTop20 showBalloon" title="이번달호"><a href="qnaboard" tabindex="29">이번달호</a></li>
+                <li class="showBalloon" title="지난달호"><a href="login" tabindex="30">지난달호</a></li>
+                <li class="showBalloon" title="누리집"><a href="qnaboard" tabindex="31">누리집</a></li>
+              </ul>
+              <ul class="menuRightLine cf">
+                <li class="marginTop20 showBalloon" title="내친구 서울"><a href="qnaboard" tabindex="32">내친구 서울</a></li>
+                <li class="marginTop20 showBalloon" title="이번달호"><a href="board" tabindex="33">이번달호</a></li>
+                <li class="showBalloon" title="지난달호"><a href="qnaboard" tabindex="34">지난달호</a></li>
+                <li class="showBalloon" title="누리집"><a href="login" tabindex="35">누리집</a></li>
+              </ul>
+            </div>
+          </div>
+        </li> <!-- 서울소식 1번 메뉴 -->
+      </ol>
+      <ol>
+        <li class="showBalloon" title="시민참여"><a href="login" tabindex="36">시민참여</a>
+          <div class="twoMenu">
+            <div class="twoDepth cf">
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="시민청원제안"><a href="board" tabindex="37">시민 청원 제안</a></li>
+                <li class="marginTop20 showBalloon" title="시민제안"><a href="qnaboard" tabindex="38">시민제안(상상대로 서울)</a></li>
+                <li class="showBalloon" title="예산낭비 신고센터"><a href="login" tabindex="39">예산낭비 신고센터</a></li>
+                <li class="showBalloon" title="불합리한 규제 신고센터"><a href="qnaboard" tabindex="40">불합리한 규제 신고센터</a></li>
+                <li class="showBalloon" title="규제 입증 요청"><a href="board" tabindex="41">규제 입증 요청</a></li>
+                <li class="showBalloon" title="참여입법"><a href="login" tabindex="42">참여입법</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="시민감사옴부즈만위원회"><a href="qnaboard" tabindex="43">시민감사옴부즈만위원회</a></li>
+                <li class="marginTop20 showBalloon" title="위원회 소개"><a href="login" tabindex="44">위원회 소개</a></li>
+                <li class="showBalloon" title="감사청구"><a href="board" tabindex="45">감사청구</a></li>
+                <li class="showBalloon" title="고충민원·청원"><a href="qnaboard" tabindex="46">고충민원·청원</a></li>
+                <li class="showBalloon" title="공공사업감시"><a href="login" tabindex="47">공공사업감시</a></li>
+                <li class="showBalloon" title="자료실"><a href="board" tabindex="48">자료실</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="시민의견"><a href="board" tabindex="49">시민의견</a></li>
+                <li class="marginTop20 showBalloon" title="자유게시판"><a href="login" tabindex="50">자유게시판</a></li>
+                <li class="showBalloon" title="칭찬합시다"><a href="board" tabindex="51">칭찬합시다</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="온라인 여론조사"><a href="board" tabindex="52">온라인 여론조사</a></li>
+                <li class="marginTop20 showBalloon" title="여론조사 안내"><a href="login" tabindex="53">여론조사 안내</a></li>
+                <li class="showBalloon" title="여론조사 참여"><a href="qnaboard" tabindex="54">여론조사 참여</a></li>
+                <li class="showBalloon" title="여론조사 결과"><a href="login" tabindex="55">여론조사 결과</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="공모전"><a href="board" tabindex="56">공모전</a></li>
+                <li class="marginTop20 showBalloon" title="뉴스"><a href="board" tabindex="57">뉴스</a></li>
+                <li class="showBalloon" title="영상"><a href="login" tabindex="58">영상</a></li>
+                <li class="showBalloon" title="매거진"><a href="board" tabindex="59">매거진</a></li>
+                <li class="showBalloon" title="공모전"><a href="login" tabindex="60">공모전</a></li>
+                <li class="showBalloon" title="이벤트"><a href="qnaboard" tabindex="61">이벤트</a></li>
+              </ul>
+            </div>
+          </div>
+        </li> <!-- 시민참여 2번 메뉴 -->
+      </ol>
+      <ol>
+        <li class="showBalloon" title="분야별정보"><a href="login" tabindex="62">분야별정보</a>
+          <div class="twoMenu">
+            <div class="twoDepth cf">
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="주택"><a href="board" tabindex="63">주택</a></li>
+                <li class="marginTop20 showBalloon" title="새소식"><a href="board" tabindex="64">새소식</a></li>
+                <li class="showBalloon" title="정책소개"><a href="board" tabindex="65">정책소개</a></li>
+                <li class="showBalloon" title="지역발전"><a href="login" tabindex="66">지역발전</a></li>
+                <li class="showBalloon" title="도시계획·부동산"><a href="qnaboard" tabindex="67">도시계획·부동산</a></li>
+                <li class="showBalloon" title="주택건축"><a href="board" tabindex="68">주택건축</a></li>
+                <li class="showBalloon" title="기반시설건설"><a href="login" tabindex="69">기반시설건설</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="경제"><a href="login" tabindex="70">경제</a></li>
+                <li class="marginTop20 showBalloon" title="서울경제"><a href="qnaboard" tabindex="71">서울경제</a></li>
+                <li class="showBalloon" title="일자리"><a href="board" tabindex="72">일자리</a></li>
+                <li class="showBalloon" title="투자·창업"><a href="login" tabindex="73">투자·창업</a></li>
+                <li class="showBalloon" title="도시농업"><a href="board" tabindex="74">도시농업</a></li>
+                <li class="showBalloon" title="노동정책"><a href="qnaboard" tabindex="75">노동정책</a></li>
+                <li class="showBalloon" title="소상공인지원"><a href="qnaboard" tabindex="76">소상공인지원</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="교통"><a href="board" tabindex="77">교통</a></li>
+                <li class="marginTop20 showBalloon" title="새소식"><a href="login" tabindex="78">새소식</a></li>
+                <li class="showBalloon" title="정책소개"><a href="qnaboard" tabindex="79">정책소개</a></li>
+                <li class="showBalloon" title="버스·지하철·택시"><a href="board" tabindex="80">버스·지하철·택시</a></li>
+                <li class="showBalloon" title="자전거·보행"><a href="login" tabindex="81">자전거·보행</a></li>
+                <li class="showBalloon" title="교통수요관리"><a href="qnaboard" tabindex="82">교통수요관리</a></li>
+                <li class="showBalloon" title="교통정보"><a href="board" tabindex="83">교통정보</a></li>
+                <li class="showBalloon" title="교통위반단속"><a href="login" tabindex="84">교통위반단속</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="환경"><a href="qnaboard" tabindex="85">환경</a></li>
+                <li class="marginTop20 showBalloon" title="새소식"><a href="board" tabindex="86">새소식</a></li>
+                <li class="showBalloon" title="정책소개"><a href="qnaboard" tabindex="87">정책소개</a></li>
+                <li class="showBalloon" title="친환경"><a href="login" tabindex="88">친환경</a></li>
+                <li class="showBalloon" title="대기"><a href="board" tabindex="89">대기</a></li>
+                <li class="showBalloon" title="녹색에너지"><a href="login" tabindex="90">녹색에너지</a></li>
+                <li class="showBalloon" title="자원"><a href="qnaboard" tabindex="91">자원</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="복지"><a href="board" tabindex="92">복지</a></li>
+                <li class="marginTop20 showBalloon" title="새소식"><a href="login" tabindex="93">새소식</a></li>
+                <li class="showBalloon" title="정책소개"><a href="qnaboard" tabindex="94">정책소개</a></li>
+                <li class="showBalloon" title="지역사회복지"><a href="board" tabindex="95">지역사회복지</a></li>
+                <li class="showBalloon" title="장애인복지"><a href="login" tabindex="96">장애인복지</a></li>
+                <li class="showBalloon" title="양성평등·외국인·다문화"><a href="board" tabindex="97">양성평등·외국인·다문화</a></li>
+                <li class="showBalloon" title="교육"><a href="login" tabindex="98">교육</a></li>
+                <li class="showBalloon" title="생활보건의료"><a href="qnaboard" tabindex="99">생활보건의료</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="안전"><a href="board" tabindex="100">안전</a></li>
+                <li class="marginTop20 showBalloon" title="새소식"><a href="board" tabindex="101">새소식</a></li>
+                <li class="showBalloon" title="정책소개"><a href="login" tabindex="102">정책소개</a></li>
+                <li class="showBalloon" title="도시안전"><a href="board" tabindex="103">도시안전</a></li>
+                <li class="showBalloon" title="시민안전"><a href="qnaboard" tabindex="104">시민안전</a></li>
+                <li class="showBalloon" title="기상안전"><a href="login" tabindex="105">기상안전</a></li>
+                <li class="showBalloon" title="소방"><a href="board" tabindex="106">소방</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="문화"><a href="qnaboard" tabindex="107">문화</a></li>
+                <li class="marginTop20 showBalloon" title="새소식"><a href="board" tabindex="108">새소식</a></li>
+                <li class="showBalloon" title="문화예술"><a href="login" tabindex="109">문화예술</a></li>
+                <li class="showBalloon" title="서울시립과학관"><a href="qnaboard" tabindex="110">서울시립과학관</a></li>
+                <li class="showBalloon" title="서울공예박물관"><a href="board" tabindex="111">서울공예박물관</a></li>
+                <li class="showBalloon" title="전통문화"><a href="login" tabindex="112">전통문화</a></li>
+                <li class="showBalloon" title="관광"><a href="qnaboard" tabindex="113">관광</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="행정"><a href="board" tabindex="114">행정</a></li>
+                <li class="marginTop20 showBalloon" title="새소식"><a href="board" tabindex="115">새소식</a></li>
+                <li class="showBalloon" title="정책소개"><a href="qnaboard" tabindex="116">정책소개</a></li>
+                <li class="showBalloon" title="기획행정"><a href="board" tabindex="117">기획행정</a></li>
+                <li class="showBalloon" title="감사·옴부즈만"><a href="qnaboard" tabindex="118">감사·옴부즈만</a></li>
+                <li class="showBalloon" title="시민소통"><a href="login" tabindex="119">시민소통</a></li>
+                <li class="showBalloon" title="디지털서울"><a href="board" tabindex="120">디지털서울</a></li>
+
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <ol>
+        <li class="showBalloon" title="서울소개"><a href="board" tabindex="122">서울소개</a>
+          <div class="twoMenu">
+            <div class="twoDepth cf">
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="시청안내"><a href="board" tabindex="123">시청안내</a></li>
+                <li class="marginTop20 showBalloon" title="조직도"><a href="board" tabindex="124">조직도</a></li>
+                <li class="showBalloon" title="본부·사업소"><a href="login" tabindex="125">본부·사업소</a></li>
+                <li class="showBalloon" title="공사·출연기관"><a href="qnaboard" tabindex="126">공사·출연기관</a></li>
+                <li class="showBalloon" title="자원봉사센터"><a href="board" tabindex="127">자원봉사센터</a></li>
+                <li class="showBalloon" title="시의회"><a href="qnaboard" tabindex="128">시의회</a></li>
+                <li class="showBalloon" title="자치구"><a href="board" tabindex="129">자치구</a></li>
+                <li class="showBalloon" title="자치구별 동 현황"><a href="login" tabindex="130">자치구별 동 현황</a></li>
+
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="서울의 상징물"><a href="board" tabindex="132">서울의 상징물</a></li>
+                <li class="marginTop20 showBalloon" title="휘장"><a href="board" tabindex="133">휘장</a></li>
+                <li class="showBalloon" title="브랜드"><a href="login" tabindex="134">브랜드</a></li>
+                <li class="showBalloon" title="해치 심벌"><a href="qnaboard" tabindex="135">해치 심벌</a></li>
+                <li class="showBalloon" title="꽃·나무·새"><a href="board" tabindex="136">꽃·나무·새</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="서울의 상징"><a href="board" tabindex="137">서울의 상징</a></li>
+                <li class="marginTop20 showBalloon" title="슬로건"><a href="board" tabindex="138">슬로건</a></li>
+                <li class="showBalloon" title="색"><a href="login" tabindex="139">색</a></li>
+                <li class="showBalloon" title="서체"><a href="qnaboard" tabindex="140">서체</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="서울의 역사"><a href="board" tabindex="141">서울의 역사</a></li>
+                <li class="marginTop20 showBalloon" title="서울의 역사"><a href="login" tabindex="142">서울의 역사</a></li>
+                <li class="showBalloon" title="역대 서울시장"><a href="qnaboard" tabindex="143">역대 서울시장</a></li>
+                <li class="showBalloon" title="시의회 변천"><a href="board" tabindex="144">시의회 변천</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="서울정보"><a href="board" tabindex="145">서울정보</a></li>
+                <li class="marginTop20 showBalloon" title="서울정보"><a href="login" tabindex="146">서울정보</a></li>
+                <li class="showBalloon" title="인포그래픽스"><a href="board" tabindex="147">인포그래픽스</a></li>
+                <li class="showBalloon" title="스토리 인 서울"><a href="login" tabindex="148">스토리 인 서울</a></li>
+                <li class="showBalloon" title="데이터로 본 서울"><a href="login" tabindex="149">데이터로 본 서울</a></li>
+                <li class="showBalloon" title="사진으로 본 서울"><a href="qnaboard" tabindex="150">사진으로 본 서울</a></li>
+                <li class="showBalloon" title="영상으로 본 서울"><a href="board" tabindex="151">영상으로 본 서울</a></li>
+                <li class="showBalloon" title="서울통계"><a href="qnaboard" tabindex="152">서울통계</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="시민상·시민표창"><a href="board" tabindex="153">시민상·시민표창</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="서울홍보대사"><a href="login" tabindex="154">서울홍보대사</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <ol>
+        <li class="showBalloon" title="부서안내"><a href="qnaboard" tabindex="155">부서안내</a></li>
+      </ol>
+      <ol>
+        <li class="showBalloon" title="정보공개"><a href="board" tabindex="156">정보공개</a>
+          <div class="twoMenu">
+            <div class="twoDepth cf">
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="원문정보"><a href="login" tabindex="157">원문정보</a></li>
+                <li class="marginTop20 showBalloon" title="결재문서"><a href="login" tabindex="158">결재문서</a></li>
+                <li class="showBalloon" title="부시장이상 결재문서"><a href="board" tabindex="159">부시장이상 결재문서</a></li>
+                <li class="showBalloon" title="정책실명제 문서"><a href="login" tabindex="160">정책실명제 문서</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="사전공개"><a href="login" tabindex="161">사전공개</a></li>
+                <li class="marginTop20 showBalloon" title="사전공개정보"><a href="board" tabindex="162">사전공개정보</a></li>
+                <li class="showBalloon" title="업무추진비"><a href="qnaboard" tabindex="163">업무추진비</a></li>
+                <li class="showBalloon" title="일정공개"><a href="login" tabindex="164">일정공개</a></li>
+                <li class="showBalloon" title="위원회 회의정보"><a href="board" tabindex="165">위원회 회의정보</a></li>
+                <li class="showBalloon" title="정책연구자료"><a href="login" tabindex="166">정책연구자료</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="공개청구"><a href="login" tabindex="167">공개청구</a></li>
+                <li class="marginTop20 showBalloon" title="정보공개청구 안내"><a href="board" tabindex="168">정보공개청구 안내</a></li>
+                <li class="showBalloon" title="비공개 세부기준"><a href="login" tabindex="169">비공개 세부기준</a></li>
+                <li class="showBalloon" title="정보공개관련규정"><a href="board" tabindex="170">정보공개관련규정</a></li>
+                <li class="showBalloon" title="정보공개청구목록"><a href="qnaboard" tabindex="171">정보공개청구목록</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="시정정보"><a href="login" tabindex="172">시정정보</a></li>
+                <li class="marginTop20 showBalloon" title="서울시의회 정보"><a href="board" tabindex="173">서울시의회 정보</a></li>
+                <li class="showBalloon" title="건설사업정보"><a href="login" tabindex="174">건설사업정보</a></li>
+                <li class="showBalloon" title="보도자료"><a href="qnaboard" tabindex="175">보도자료</a></li>
+                <li class="showBalloon" title="주요사업백서"><a href="login" tabindex="176">주요사업백서</a></li>
+                <li class="showBalloon" title="국외훈련보고서"><a href="board" tabindex="177">국외훈련보고서</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="통계정보"><a href="login" tabindex="178">통계정보</a></li>
+                <li class="marginTop20 showBalloon" title="서울의 통계"><a href="board" tabindex="179">서울의 통계</a></li>
+                <li class="showBalloon" title="공공데이터"><a href="qnaboard" tabindex="180">공공데이터</a></li>
+                <li class="showBalloon" title="서울의 재정"><a href="board" tabindex="181">서울의 재정</a></li>
+                <li class="showBalloon" title="서울시조직운영지표"><a href="login" tabindex="182">서울시조직운영지표</a></li>
+                <li class="showBalloon" title="정보공개현황"><a href="login" tabindex="183">정보공개현황</a></li>
+              </ul>
+              <ul class="cf">
+                <li class="marginTop20 showBalloon" title="시민소통"><a href="board" tabindex="184">시민소통</a></li>
+                <li class="marginTop20 showBalloon" title="주요질문"><a href="login" tabindex="185">120 주요질문</a></li>
+                <li class="showBalloon" title="시민관심정보"><a href="login" tabindex="186">시민관심정보</a></li>
+                <li class="showBalloon" title="서울이야기"><a href="board" tabindex="187">서울이야기</a></li>
+                <li class="showBalloon" title="서울의 기록"><a href="login" tabindex="188">서울의 기록</a></li>
+                <li class="showBalloon" title="문의 및 안내"><a href="qnaboard" tabindex="189">문의 및 안내</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <ol>
+        <li class="showBalloon" title="응답소"><a href="board" tabindex="190">응답소</a></li>
+      </ol>
+      <ol>
+        <div id="zoom">
+          <li><a href="#" class="zoom_in"><img src="images/util_zoom_2.gif" /></a></li>
+          <li><a href="#" class="zoom_return">100</a></li>
+          <li><a href="#" class="zoom_out"><img src="images/util_zoom_4.gif" /></a></li>
+          <li><span>화면크기</span></li>
+        </div>
+      </ol>
+      <ol>
+        <li id="mainTopRightmenu2" class="showBalloon" title="나의서울"><a href="board" tabindex="192">나의서울</a></li>
+      </ol>
+      <ol>
+        <li id="mainTopRightmenu3" class="showBalloon" title="전자우편"><a href="qnaboard" tabindex="193">전자우편</a></li>
+      </ol>
+    </nav>
+  </header>
+</div>
+<!--  대체 위치-->
+<div layout:fragment="content">
+  이곳을 대체
+</div>
+<!--  공통 바닥글-->
+<footer id="commonBottomMenu">
+  <div id="mainBottomMenu2">
+    <ol>
+      <li class="showBalloon" title="누리집 도우미"><a href="board" tabindex="301">누리집 도우미</a></li>
+      <li class="showBalloon" title="개인정보처리방침"><a href="login" style="color:red;" tabindex="302">개인정보처리방침</a></li>
+      <li class="showBalloon" title="저작권 정책"><a href="qnaboard" tabindex="303">저작권 정책</a></li>
+      <li class="showBalloon" title="영상정보처리기기 운영 관리방침"><a href="login" tabindex="304">영상정보처리기기 운영 관리방침</a></li>
+      <li class="showBalloon" title="누리집 바로잡기"><a href="board" tabindex="305">누리집 바로잡기</a></li>
+      <li class="showBalloon" title="누리집지도"><a href="qnaboard" tabindex="306">누리집지도</a></li>
+      <li><a href="login" tabindex="307"></a></li>
+    </ol>
+  </div>
+  <div id="mainBottomCopy">
+    <div class="mainBottomCopySub">
+      <ol>
+        <li class="showBalloon" title="서울시 로고"><img src="images/logoFooter.png" alt="하단왼쪽로고"/></li>
+        <li>서울특별시청 04524 서울특별시 중구 세종대로 110 [찾아오시는길] <br/>
+          대표전화: 02-120 또는 02-731-2120 <br/>
+          &copy;Seoul Metropolitan Goverment all right reserved
+        </li>
+        <li class="showBalloon" title="Wa 로고"><img src="images/waMark.png" alt="하단오른쪽로고"/></li>
+      </ol>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

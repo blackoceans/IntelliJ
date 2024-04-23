@@ -1,0 +1,53 @@
+﻿html{overflow-y: scroll;}
+*{margin:0px; padding: 0px;}
+li{list-style:none;}
+a{text-decoration: none;}
+body{font-family: "맑은 고딕", "돋움", sans-serif;}
+img{border: 0px;}
+.cf:after{content: ''; display: block; clear: both;}
+
+/* 유효성 검사 */
+ol{list-style:none;}
+.marginTop20{margin-top:20px;}
+
+
+
+#header{height: 50px; position: relative; left: 0px; top: 0px;}
+	.mainTopMenu{width: 1420px; height: 0px; margin: 0 auto;}
+	.mainTopMenu ol > li{float: left; padding: 0px 8px; height: 50px;}
+	.mainTopMenu ol > li > a{display: block; float: left; padding: 0px 20px; line-height: 50px; height: 50px; color: black; font-weight:bold;}
+	.mainTopMenu ol > li:hover .twoMenu{display: block;}
+	#cityHallLogo{padding-left:0px;} /* 선택자 우선 */
+	
+.twoMenu{width: 100%; background-color:#ffffff; position: absolute; top: 50px; left: 0px; display: none; float: left; z-index:11;}
+	.twoDepth{width: 1420px; height:400px; background: #ffffff; margin: 0 auto;}
+	.twoDepth > ul{float:left; margin-left:30px; height:280px; border-right: 1px solid #999999; padding-left:0px; padding-right:20px; padding-top:0px;}
+	/* .twoDepth ul li a{display:block; color: white; padding:5px 0px;} */
+	.twoDepth ul li{margin-left:15px;}	
+	.twoDepth ul li:nth-of-type(1) a{display:block; width: 180px; height: 30px; color:black; border: 1px solid #999999; padding: 10px 0px 0px 10px; border-radius: 5px; font-weight:bold; margin-top:0px;}
+	.twoDepth ul li:nth-of-type(1) a:hover{background-color:#d2e1e9;}
+	.twoDepth ul li a{display:block; padding: 5px 5px; font-size:0.8em; color:black;}
+
+	#zoom > li{float:right; margin-top:17px;}
+		.zoom_return{width:25px; height:25px; color:black; display:block; font-weight:bold; margin:0px 3px 0px 5px; font-size:0.8em;}
+		#zoom > li > span{display:block; font-weight:bold; font-size:0.8em; margin-right:3px; color:#2292e9;}
+	#mainTopRightmenu2{float:right; padding:0px; font-size:0.8em;}
+	#mainTopRightmenu3{float:right; padding:0px; font-size:0.8em;}
+	
+	#commonBottomMenu{}	
+		#mainBottomMenu2{width:1420px; height: 50px; margin: 0 auto; margin-top: 60px; border-bottom: 1px solid #999999;}
+			#mainBottomMenu2 > ol > li{float:left; width: 140px; height: 25px; font-size: 0.8em; border-right: 1px solid #999999;}
+			#mainBottomMenu2 > ol > li:nth-of-type(4){width:220px;}
+			#mainBottomMenu2 > ol > li:last-child{border-right: none;}
+			#mainBottomMenu2 > ol > li > a{display:block; padding: 0px 10px; color:#999999; text-align:center;}
+	#mainBottomCopy{width:100%; height: 106px;}
+		.mainBottomCopySub{width:1420px; height: 106px; margin: 0 auto;}
+			.mainBottomCopySub > ol > li:nth-of-type(1){width: 200px; height: 100px; float:left;}
+			.mainBottomCopySub > ol > li:nth-of-type(2){width: 490px; height: 100px; float:left; padding-top: 25px;}
+			.mainBottomCopySub > ol > li:nth-of-type(3){width: 200px; height: 100px; float:right; margin-left: 50px;}
+			.mainBottomCopySub > ol > li:first-child > img{padding-top: 30px;}
+			.mainBottomCopySub > ol > li:last-child > img{padding: 20px 0px 0px 105px;}
+		
+
+
+
