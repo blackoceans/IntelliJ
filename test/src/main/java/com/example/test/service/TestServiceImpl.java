@@ -21,16 +21,49 @@ public class TestServiceImpl implements TestService{
 
     @Override
     public Optional<Test> selectOneById(Integer id) {
-        return repository.findById(id);
+        Integer startId;
+        Integer endId = repository.endId();
+        count++;
+        startId = count;
+        if(startId > endId){
+            count = -1;
+            startId = count;
+        }
+        Boolean findId = repository.existsById(startId);
+        while(findId == false){
+            startId++;
+            count = startId;
+            findId = repository.existsById(startId);
+        }
+        //Integer randId = repository.getRandomId();
+        //if(randId == null) {
+        //  return Optional.empty();
+        //}
+        return repository.findById(startId);
     }
 
+    Integer count = -1;
     @Override
     public Optional<Test> selectOneRandomTest() {
-        Integer randId = repository.getRandomId();
-        if(randId == null) {
-            return Optional.empty();
+        Integer startId;
+        Integer endId = repository.endId();
+        count++;
+        startId = count;
+        if(startId >= endId){
+            count = -1;
+            startId = count;
         }
-        return repository.findById(randId);
+        Boolean findId = repository.existsById(startId);
+        while(findId == false){
+            startId++;
+            count = startId;
+            findId = repository.existsById(startId);
+        }
+        //Integer randId = repository.getRandomId();
+        //if(randId == null) {
+          //  return Optional.empty();
+        //}
+        return repository.findById(startId);
     }
 
     @Override
