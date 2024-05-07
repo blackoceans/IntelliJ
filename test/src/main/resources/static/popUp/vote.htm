@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>vote</title>
+	<link rel="stylesheet" href="vote.css"/>
+	<script>
+		function unit(x){
+			var m = x%10
+			return m
+		}
+		
+		function tenth(y){
+			var m = y/10%10
+			m = Math.floor(m)
+			return m	
+		}			
+
+		function hund(v){
+			var m = v/100
+			m = Math.floor(m)
+			return m	
+		}		
+		
+		function ddaycount(){
+			imgArr = [
+				'../images/num0.png',
+				'../images/num1.png',
+				'../images/num2.png',
+				'../images/num3.png',
+				'../images/num4.png',
+				'../images/num5.png',
+				'../images/num6.png',
+				'../images/num7.png',
+				'../images/num8.png',
+				'../images/num9.png'
+			
+			]
+			
+			doomsday = new Date('Apri 10, 2024 00:00:00')
+			// Janu Febr Marc Apri May Jun July Augu Sept Octo Nove Dece
+			today = new Date()
+			howfar = doomsday - today
+			
+			if(howfar>0){
+				setTimeout('ddaycount()',1000)
+			} else {
+				clearTimeout('ddaycount()')
+				document.getElementById('countment').innerHTML='카운트가 종료되었습니다'
+				return false
+			}
+			
+			days = Math.floor(howfar/(1000*60*60*24))
+			hours = Math.floor(howfar/(1000*60*60))
+			mins = Math.floor(howfar/(1000*60))
+			secs = Math.floor(howfar/(1000))
+			
+			d = days
+			h = hours - days*24
+			m = mins - hours*60
+			s = secs - mins*60
+			
+			document.getElementById('day100').setAttribute('src',imgArr[hund(d)])
+			document.getElementById('day10').setAttribute('src',imgArr[tenth(d)])
+			document.getElementById('day1').setAttribute('src',imgArr[unit(d)])
+			document.getElementById('hour10').setAttribute('src',imgArr[tenth(h)])
+			document.getElementById('hour1').setAttribute('src',imgArr[unit(h)])
+			document.getElementById('min10').setAttribute('src',imgArr[tenth(m)])
+			document.getElementById('min1').setAttribute('src',imgArr[unit(m)])
+			document.getElementById('sec10').setAttribute('src',imgArr[tenth(s)])
+			document.getElementById('sec1').setAttribute('src',imgArr[unit(s)])
+			
+			if(d<10){d='00'+d}else if(d<100){d='0'+d}
+			if(h<10){h="0"+h}
+			if(m<10){m="0"+m}
+			if(s<10){s="0"+s}
+		}
+				
+	</script>
+</head>	
+<body onLoad="ddaycount()">
+	<div id="countwrap">
+		<h2 id="countment">2024 제22대 지방선거</h2>
+		<div class="counter">
+			<ul class="cf">
+				<li id="countD" class="firstli fl">
+					<img src="../images/num0.png" width="40" id="day100" class="fl" />
+					<img src="../images/num0.png" width="40" id="day10" class="fl" />
+					<img src="../images/num0.png" width="40" id="day1" class="fl" />
+					
+				</li>
+				<li class="fl">
+					<img src="../images/day_bg2.png" width="10" id="middle" class="fl" />
+				</li>
+				<li id="counterH" class="fl">
+					<img src="../images/num0.png" width="40" id="hour10" class="fl" alt="시간10의자리" />
+					<img src="../images/num0.png" width="40" id="hour1" class="fl" alt="시간1의자리" />
+					
+				</li>
+				<li class="fl">
+					<img src="../images/day_bg2.png" width="10" id="middle" class="fl" />
+				</li>
+				<li id="counterM" class="fl">
+					<img src="../images/num0.png" width="40" id="min10" class="fl" alt="분10의자리" />
+					<img src="../images/num0.png" width="40" id="min1" class="fl" alt="분1의자리" />
+					
+				</li>
+				<li class="fl">
+					<img src="../images/day_bg2.png" width="10" id="middle" class="fl" />
+				</li>
+				<li id="counterS" class="fl">
+					<img src="../images/num0.png" width="40" id="sec10" class="fl" alt="분10의자리" />
+					<img src="../images/num0.png" width="40" id="sec1" class="fl" alt="분1의자리" />
+					
+				</li>
+			</ul>
+		</div>
+		<input type="submit" onclick="window.close()" class="close" value="닫기"/>
+	</div>
+</body>
+</html>

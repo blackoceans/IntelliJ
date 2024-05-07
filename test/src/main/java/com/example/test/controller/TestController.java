@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.swing.text.html.Option;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
@@ -33,17 +34,20 @@ public class TestController {
         Iterable<Test> list = service.selectAll();
 
         model.addAttribute("list", list);
-        model.addAttribute("title", "등록 폼");
+        model.addAttribute("title", "민원 신청하기");
 
-        return "crud";
+        return "qnaboard";
     }
 
     @PostMapping("/insert")
     public String insert(@Validated TestForm testForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
         Test test = new Test();
         test.setQuestion(testForm.getQuestion());
+        test.setCon(testForm.getCon());
         test.setAnswer(testForm.getAnswer());
         test.setAuthor(testForm.getAuthor());
+        LocalDate localDate = LocalDate.now();
+        test.setDate(localDate);
 
         if(!bindingResult.hasErrors()){
             service.insertTest(test);
@@ -62,7 +66,7 @@ public class TestController {
             testForm = testFormOpt.get();
         }
         makeUpdateModel(testForm, model);
-        return "crud";
+        return "qnaboardWrite";
     }
     private void makeUpdateModel(TestForm testForm, Model model){
         model.addAttribute("id", testForm.getId());
@@ -80,10 +84,10 @@ public class TestController {
         if(!result.hasErrors()){
             service.updateTest(test);
             redirectAttributes.addFlashAttribute("complete", "변경이 완료되었습니다");
-            return "redirect:/test/" + test.getId();
+            return "redirect:/test"; /*+ test.getId()*/
         } else{
             makeUpdateModel(testForm, model);
-            return "crud";
+            return "qnaboardWrite";
         }
     }
 
@@ -91,6 +95,7 @@ public class TestController {
         Test test = new Test();
         test.setId(testForm.getId());
         test.setQuestion(testForm.getQuestion());
+        test.setCon(testForm.getCon());
         test.setAnswer(testForm.getAnswer());
         test.setAuthor(testForm.getAuthor());
         return test;
@@ -100,6 +105,7 @@ public class TestController {
         TestForm form = new TestForm();
         form.setId(test.getId());
         form.setQuestion(test.getQuestion());
+        form.setCon(test.getCon());
         form.setAnswer(test.getAnswer());
         form.setAuthor(test.getAuthor());
         form.setNewTest(false);
@@ -115,30 +121,30 @@ public class TestController {
         return "redirect:/test";
     }
 
-    Integer nextId = 0;
-    @GetMapping("/play")
-    public String showTest(TestForm testForm, Model model){
-        //Optional<Test> testOpt = service.selectOneRandomTest();
-        Optional<Test> testOpt = service.selectOneById(++nextId);
-        if(testOpt.isPresent()){
-            Optional<TestForm> testFormOpt = testOpt.map(t -> makeTestForm(t));
-            testForm = testFormOpt.get();
-        } else{
-            model.addAttribute("msg", "등록된 문제가 없습니다");
-            nextId = 0;
-            return "play";
-        }
-        model.addAttribute("testForm", testForm);
-        return "play";
+    @GetMapping("/index")
+    public String showindex(){
+
+        return "index";
+    }
+    @GetMapping("login")
+    public String showlogin(){
+
+        return "login";
+    }
+    @GetMapping("board")
+    public String showboard(){
+
+        return "board";
+    }
+    @GetMapping("qnaboard")
+    public String showqnaboard(){
+
+        return "qnaboard";
     }
 
-    @PostMapping("/check")
-    public String checkTest(TestForm testForm, @RequestParam Boolean answer, Model model){
-        if(service.checkTest(testForm.getId(), answer)) {
-            model.addAttribute("msg", "정답입니다");
-        } else {
-            model.addAttribute("msg", "오답입니다");
-        }
-        return "answer";
+    @GetMapping("qnaboardWrite")
+    public String showqnaboardWrite(){
+
+        return "qnaboardWrite";
     }
 }
