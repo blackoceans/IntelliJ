@@ -367,10 +367,10 @@
     	    <input th:if="${id}" type="hidden" th:field="*{id}" >
     	    <input type="submit" value="작성완료" class="boardSubmit">
         </form>
-        <form method="POST" th:action="@{/test/delete}">
+        <!--<form method="POST" th:action="@{/test/delete}">
             <input type="hidden" name="id" th:value="${obj.id}" th:each="obj : ${list}">
             <input type="submit" value="삭제">
-        </form>
+        </form>-->
     </div>
     <br>
     <hr>
