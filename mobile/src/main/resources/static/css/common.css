@@ -1,0 +1,29 @@
+﻿*{margin:0; padding: 0; -webkit-text-size-adjust: none; text-shadow: none !important; }
+
+/* 스크롤바 보이지 않기 */
+
+body{background-color:#ffffff; scrollbar-width: none; -ms-overflow-style: none; }
+body::-webkit-scrollbar { display:none; }
+
+body{color: #666; font-size: 14px; font-family: '맑은 고딕',Helvetica, AppleGothic, "돋움", Dotum, sans-serif;}
+img, fieldset{border:0;}
+ul,ol,li,dl{list-style:none;}
+h1,h2,h3,h4,h5,h6{font-size: 100%; font-weight: normal;}
+.cf:after{content: ' '; display: block; clear: both;}
+.fl{float:left;}
+.fr{float:right;}
+a, a:link{text-decoration: none; color: #333;}
+a:visited{color: #333;}
+a:hover, a:active{color: #333; text-decoration: none;}
+em, i, address{font-style: normal; font-weight: normal;}
+legend, caption{display: none; clear:both;}
+input, textarea,  select, button, table{font-size: inherit; font-family: inherit; line-height: inherit;}
+section, nav, article, aside, hgroup, header, footer{display: block;}
+textarea, input{background: url(none); -webkit-border-radius: 1px; -webkit-appearance: none;}
+textarea{resize: none;}
+lable{cursor: pointer;}
+.helv{font-family: "돋움", HelveticaNeue, Dotum, "굴림", Gulim, Apple-Gothic, sans-serif;}
+.verd{font-family: verdana, "돋움", HelveticaNeue, Dotum, "굴림", Gulim, Apple-Gothic, sans-serif;}
+.bold{font-weight: bold}
+.ui-focus{ box-shadow:none !important;}
+.ui-btn{ box-shadow:none !important;}

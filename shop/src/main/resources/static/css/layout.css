@@ -1,0 +1,158 @@
+﻿/* 회원가입 페이지 헤더 */
+#join .ui-header{ width: 100%; background-color: #ffffff;}
+#join .ui-header .ui-title{margin: 0;}
+#join .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 메인페이지 헤더 */
+#main_page .ui-header{ width: 100%; background-color: #ffffff;}
+#main_page .ui-header .ui-title{margin: 0;}
+#main_page .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 메인페이지 푸터 */
+#main_page .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#main_page .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#main_page .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 마이페이지 헤더 */
+#my_page .ui-header{ width: 100%; background-color: #ffffff;}
+#my_page .ui-header .ui-title{margin: 0;}
+#my_page .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#my_page .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 마이페이지 푸터 */
+#my_page .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#my_page .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#my_page .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 날씨 페이지 헤더 */
+#weather .ui-header{ width: 100%; background-color: #ffffff;}
+#weather .ui-header .ui-title{margin: 0;}
+#weather .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#weather .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 날씨 페이지 푸터 */
+#weather .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#weather .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#weather .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 일정 만들기 페이지 헤더 */
+#schedule .ui-header{ width: 100%; background-color: #ffffff;}
+#schedule .ui-header .ui-title{margin: 0;}
+#schedule .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#schedule .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 일정 만들기 페이지 푸터 */
+#schedule .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#schedule .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#schedule .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 메인 상세 페이지 헤더 */
+#main_detail .ui-header{ width: 100%; background-color: #ffffff;}
+#main_detail .ui-header .ui-title{margin: 0;}
+#main_detail .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#main_detail .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 내 여행지 페이지 헤더 */
+#my_travel .ui-header{ width: 100%; background-color: #ffffff;}
+#my_travel .ui-header .ui-title{margin: 0;}
+#my_travel .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#my_travel .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 내 여행지 페이지 푸터 */
+#my_travel .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#my_travel .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#my_travel .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 내 여행지 페이지 헤더 */
+#map_select .ui-header{ width: 100%; background-color: #ffffff;}
+#map_select .ui-header .ui-title{margin: 0;}
+#map_select .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#map_select .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 내 여행지 페이지 푸터 */
+#map_select .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#map_select .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#map_select .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 일정 달력 페이지 헤더 */
+#calendar .ui-header{ width: 100%; background-color: #ffffff;}
+#calendar .ui-header .ui-title{margin: 0;}
+#calendar .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#calendar .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 일정 달력 페이지 푸터 */
+#calendar .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#calendar .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#calendar .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 숙소 게시판 페이지 헤더 */
+#hotel .ui-header{ width: 100%; background-color: #ffffff;}
+#hotel .ui-header .ui-title{margin: 0;}
+#hotel .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#hotel .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 숙소 게시판 페이지 푸터 */
+#hotel .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#hotel .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#hotel .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 티켓 게시판 페이지 헤더 */
+#ticket .ui-header{ width: 100%; background-color: #ffffff;}
+#ticket .ui-header .ui-title{margin: 0;}
+#ticket .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#ticket .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 티켓 게시판 페이지 푸터 */
+#ticket .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#ticket .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#ticket .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+/* 게시판 페이지 헤더 */
+#board .ui-header{ width: 100%; background-color: #ffffff;}
+#board .ui-header .ui-title{margin: 0;}
+#board .ui-header .menu{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+#board .ui-header .back{border:none; box-shadow: none; text-shadow: none; background: none; top: 10px;} 
+
+/* 게시판 페이지 푸터 */
+#board .ui-bar{background-color: #fff; padding: 10px 0; height: 40px;}
+#board .ui-bar div{border: none; font-weight: normal; text-align: center; }
+#board .ui-bar div a{color: #666666; font-weight: normal; font-family:'맑은 고딕','돋움';}
+
+
+/* 메뉴패널 공통부분 */
+.panel .ui-panel-inner {padding: 0;}
+.panel {width: 74%; min-height: 620px;}
+.ui-panel-dismiss-open.ui-panel-dismiss-position-right {right: 74%;}
+.panel .main_mypage_header{width: 100%; height: 150px; background-color: #0274DD;}
+.panel .main_mypage_setting{position: absolute; left:10px; top: 10px; }
+.panel .main_mypage_alert{position: absolute; left: 30px; top: 10px; }
+.panel .main_mypage_close{position: absolute; right:10px; top: 10px;}
+
+.panel #profile{width: 100%; box-sizing: border-box; position: absolute; top: 50px; }
+.panel #profile > a > span:nth-child(1){box-sizing: border-box;  padding: 10px 20px; height:62px; float: left;}
+.panel #profile > a > span:nth-child(1) img{width: 50px; height: 50px; border-radius: 50%;}
+.panel #profile p{width: 60%; box-sizing: border-box; height: 62px; padding: 15px 0 15px 10px; color:#555555; float: left;  font-weight: normal;}
+.panel #profile p span:nth-child(1){font-family: '맑은 고딕', sans-serif; font-size: 18px; display: block; color: #fff;}
+.panel #profile p span:nth-child(2){font-family: '맑은 고딕', sans-serif; color:#fff; font-size: 14px;}
+
+.panel .main_mypage_body{width: 100%; height: 320px;position: relative;}
+.panel .main_mypage_body .my_next{width: 80%; position: absolute; top: 30px; left: 10%; background-color: #ffffff; color: #333; font-weight: normal; font-size: 16px; border-color: #0274DD;}
+.panel .main_mypage_body .my_next span{font-weight: bold; color: #0274DD; font-size: 20px;}
+.panel .my_list_one{top: 110px;}
+.panel .my_list_one a{color: #666666; font-weight:normal; font-size: 14px;}
+.panel .my_list_one a:hover{color: #666666;}
+.panel .my_list_one>div{text-align: center; cursor:pointer;}
+.panel .my_list_two{top: 140px;}
+.panel .my_list_two a{color: #666666; font-weight:normal; font-size: 14px;}
+.panel .my_list_two a:hover{color: #666666;}
+.panel .my_list_two>div{text-align: center; cursor:pointer;}
+
+.panel .main_mypage_footer{width: 100%; height: 150px; border-top: 1px solid #ddd; position: relative;}
+.panel .main_mypage_footer p{padding: 20px 20px 20px 10px;}
+.panel .main_mypage_footer p span:nth-child(1){font-size: 16px; font-weight: bold; color: #333; white-space: nowrap; }
+.panel .main_mypage_footer p span:nth-child(3){font-size: 14px; color: #666; white-space: nowrap;}
+.panel .main_mypage_footer p span:nth-child(5){font-size: 14px; color: #666; white-space: nowrap;}
+.panel .main_mypage_footer a{position: absolute; right: 20px; top: 120px; color: #666; float: right; font-size: 12px;font-weight: normal; cursor:pointer; }
+.panel .main_mypage_footer a:hover{color: #666; }
+
+
