@@ -27,6 +27,16 @@ public class SecurityConfig {
         .logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
                 .logoutSuccessUrl("/") //로그아웃 성공 시 이동할 url
+        )
+        //주소창에 페이지 주소를 넣는 것을 사용한다는 의미
+        .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/css/**","/js/**","/img/**").permitAll() //permitall 모든 사용자 접근가능
+                .requestMatchers("/","/members/**","/item/**","/images/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN") //어드민만 접근 가능
+                .anyRequest().authenticated() //나머지 모든 경로들은 인증하도록
+        )
+        .exceptionHandling(exception -> exception //사용자가 리소스에 접근했을 때 수행되는 핸들러 등록
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
         );
 
         return http.build();//권한 설정?
@@ -34,6 +44,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder(){
+
         return new BCryptPasswordEncoder(); //비밀번호 맞나 확인하는?
     }
 }
