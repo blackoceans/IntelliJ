@@ -21,7 +21,7 @@ public class TestServiceImpl implements TestService{
 
     @Override
     public Optional<Test> selectOneById(Integer id) {
-           return repository.findById(id);
+        return repository.findById(id);
     }
 
     Integer count = -1;
@@ -43,7 +43,7 @@ public class TestServiceImpl implements TestService{
         }
         //Integer randId = repository.getRandomId();
         //if(randId == null) {
-          //  return Optional.empty();
+        //  return Optional.empty();
         //}
         return repository.findById(startId);
     }

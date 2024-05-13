@@ -1,0 +1,54 @@
+﻿html{overflow-y: scroll;}
+*{margin:0px; padding: 0px;}
+li{list-style:none;}
+a{text-decoration: none;}
+body{font-family: "맑은 고딕", "돋움", sans-serif;}
+img{border: 0px;}
+.cf:after{content: ''; display: block; clear: both;}
+
+/* #subTopBanner{height: 60px; background-color: #cccccc;}
+
+#subTopWrap{width: 1420px; margin:0 auto;}
+	#subTop{width:1420px; height:114px; margin: 0 auto;}
+	#subTopLeftLogo{width:168px; height: 114px; background-color: #bbbbbb; float: left;}
+	#subTopMenu1{width:845px; height:114px; background-color:#999999; float:right;}
+	#subTopRightMenu{width: 270px; height: 114px; background-color:#aaaaaa; float:right;}
+
+#subTopMenu2{height:67px; background-color:#cccccc; margin-bottom: 95px;} */
+#mainTop2{width:1420px; height:157px; margin:0 auto; background-color:#0d82eb;}
+	.mainTopLeftLogo{width:290px; height: 157px; float:left;}
+	.mainTopLeftLogo img{display:block; padding-top:30px;}
+	#mainTopRightLogo1{width:1130px; height:157px;  float:left; }	
+		#mainTopRightLogo2{width: 1112px; height:112px; float:right; margin-top:30px;}
+			.inputBorder{width:500px; height:53px; float:left; padding-top:10px;}
+			.searchBar{width:496px; height:49px;  float:left; font-size:1.5em; font-size:0.8em; color:skyblue;}
+		
+/* 툴팁 */
+.balloon{background:#333333; color:#eeeeee; padding:5px; position: absolute; display:none; border-radius:10px; font-size:0.7em;}
+
+/* 글쓰기 부분 */
+.core{width:1420px; margin:0 auto; padding-top:50px; height:800px;}
+.core > h3{padding-bottom:50px; font-size:25px;}
+.core > hr{height:2px; border:0; background-color:#0d82eb;}
+
+.core > .coreForm{padding-top:20px; padding-bottom:50px; height:490px; position:relative;}
+.core > .coreForm > form > label{padding-left:30px; font-size:19px; height:65px; display:inline-block; padding-top:30px;}
+.core > .coreForm > form > label > input{margin-left:30px; width:200px; height:22px;}
+.core > .coreForm > form > .boardSubmit{float:right; background-color:#0d82eb; color:white; width:80px; height:40px; border-radius:15px; border:0; position:absolute; bottom:-120px; right:30px;}
+.core > .coreForm > form > hr{height:1px; border:0; background-color:#cccccc;}
+.core > .coreForm > form > label > .title{width:1250px;}
+.content01{float:left;}
+.content02{float:left; margin-left:30px; width:1250px; height:270px;}
+
+
+
+
+
+
+
+
+
+
+
+
+

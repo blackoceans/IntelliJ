@@ -13,6 +13,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+
 public class SecurityConfig {
     @Autowired //의존성 주입
     MemberService memberService;
@@ -41,6 +42,7 @@ public class SecurityConfig {
 
         return http.build();//권한 설정?
     } //컨트롤러에서 세팅하지 않고 여기서 스프링에서 지원하는 기능들로 구현한 것
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){

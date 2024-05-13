@@ -1,2294 +1,558 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{commons/layout}">
 <head>
-	<meta charset="UTF-8">
-	<meta name="Generator" content="Notepad++">
-	<meta name="Author" content="Travel Maker">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale-1.0, minimum-scale=1.0, user-scalable=no">
-	<meta name="description" content="나만의 여행 일정을 만들어 보세요.">
-	<title>Travel Maker</title>
-	<link rel="stylesheet" href="/css/jquery.mobile-1.4.5.min.css" />
-	<link rel="stylesheet" href="/css/swiper.css">
-	<link rel="stylesheet" href="/css/common.css"/>
-	<link rel="stylesheet" href="/css/layout.css"/>
-	<link rel="stylesheet" href="/css/index.css"/>
-	<script src="/js/jquery-1.11.1.min.js"></script>
-	<script src="/js/jquery.mobile-1.4.5.min.js"></script>
-	<script src="/js/script.js"></script>
-	<script src="/js/weather.js"></script>
-	<script src="/js/swiper.js"></script>
-	<script src="/js/list.js"></script>
-	<!-- 맵 관련 스크립트 -->
-	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-	<script src="/js/map.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8qApSC1zUZ3N5TJXqIotkH0fncaD2W9A&callback=initMap&v=weekly&solution_channel=GMP_CCS_geocodingservice_v1" defer></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8qApSC1zUZ3N5TJXqIotkH0fncaD2W9A&callback=initMap&v=weekly&solution_channel=GMP_CCS_geolocation_v1" defer></script>
-	<script src=" http://maps.google.com/maps/api/js?key=AIzaSyA3_SR598S--ec9D2oXt4AJnXI3pKm0hco&v=3.3&sensor=true"></script>
-	<!-- 캘린더 관련 스크립트 -->
-	<script src="/js/jquery-1.9.1.min.js"></script>
-	<script src="/js/underscore-min.js"></script>
-	<script src="/js/moment-2.2.1.js"></script>
-	<script src="/js/jhclndr.js"></script>
-	<script src="/js/site.js"></script>
-	<script src="/js/jquery-multiple-select.js"></script>
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-36251023-1']);
-		_gaq.push(['_setDomainName', 'jqueryscript.net']);
-		_gaq.push(['_trackPageview']);
-  
-		(function() {
-		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	  </script>
+  <meta charset="UTF-8">
+  <title>index</title>
+  <link rel="stylesheet" href="/css/common.css"/>
+  <link rel="stylesheet" href="/css/main.css"/>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="/js/jquery.bxslider.min.js"></script>
+  <script src="/js/mainScript.js"></script>
+  <script src="/js/common.js"></script>
+  <script>
+	var tid;
+	var cnt = parseInt(600);
+	function counter_init() {
+		tid = setInterval("counter_run()", 1000);
+	}
 
+	function counter_reset() {
+		clearInterval(tid);
+		cnt = parseInt(60);
+		counter_init();
+	}
+
+	function counter_run() {
+		document.getElementById("counter").innerText = time_format(cnt);
+		cnt--;
+		if(cnt < 0) {
+			clearInterval(tid);
+			self.location = "main.html";
+		}
+	}
+	function time_format(s) {
+		var nHour=0;
+		var nMin=0;
+		var nSec=0;
+		if(s>0) {
+			nMin = parseInt(s/60);
+			nSec = s%60;
+
+			if(nMin>60) {
+				nHour = parseInt(nMin/60);
+				nMin = nMin%60;
+			}
+		}
+		if(nSec<10) nSec = "0"+nSec;
+		if(nMin<10) nMin = "0"+nMin;
+
+		return ""+nHour+":"+nMin+":"+nSec;
+	}
+	</script>
+  <script>
+		counter_init();
+	</script>
+  <script>window.open("/popUp/vote.htm", "", "resizable=no, toolbar=no, width=506, height=506")
+	</script>
 </head>
 <body>
-<div data-role="page" id="splash">
-	<div data-role="content">
-		<div class="splashContents">
-			<img src="/images/logo.png" class=mainlogo width="150" alt="메인 로고"/>
-			<img src="/images/logotext.png" class="maintext" width="150" alt="메인 텍스트"/>
-			<a href="#onboarding1" data-role="button" data-mini="true">시작하기</a>
-		</div>
-	</div>
+<!--  대체되는 내용-->
+<div layout:fragment="content">
+  <section id="mainTop2">
+    <div class="mainTopLeftLogo cf showBalloon" title="메인 페이지"><a href="index" tabindex="194"><img src="/images/CityhallLogo2.png" alt="시청 메인 로고2"/></a>
+    </div>
+    <div id="mainTopRightLogo1" class="cf">
+      <div id="mainTopRightLogo2">
+        <div class="inputBorder">
+          <input type="text" class="searchBar showBalloon" title="검색창" value=" 무엇을 도와드릴까요?"/>
+          <div class="inputBorderBox">
+            <div class="searchIcon"></div>
+          </div>
+        </div>
+        <div class="loginBoxs">
+          <div class="loginBox1">
+            <input type="text" placeholder="아이디"/>
+            <input type="password" placeholder="비밀번호"/>
+            <div class="loginBox1-1">
+              <div class="loginBox1-2">로그인</div>
+              <div class="loginBox1-3">회원가입</div>
+            </div>
+          </div>
+          <div class="loginBox2">
+            <p class="loginTopP">자동 로그인까지</p>
+            <span id="counter"></span>
+            <p>초 남음</p>
+            <div class="loginBox2-1"><a href="board">연장</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="mainTopCenterWrap">
+    <div id="mainTopCenterBox" class="cf">
+      <div id="mainTopSlide">
+        <input type="radio" id="first" name="tab" checked />
+        <input type="radio" id="second" name="tab"/>
+        <div class="buttons cf">
+          <label for="first" class="showBalloon" title="주요뉴스"><img src="/images/mainSlideLogo1.png" alt="메인 슬라이드 로고1"/><br/>주요뉴스</label>
+          <label for="second" class="showBalloon" title="시민참여"><img src="/images/mainSlideLogo2.png" alt="메인 슬라이드 로고2"/><br/>시민참여</label>
+        </div>
+        <div class="tabImg cf">
+          <ul>
+            <span class="left"><a href="board" onclick="return false"><img src="/images/btn_left.png" alt="이전"/></a></span>
+            <div class="slideGroup1 cf">
+              <li class="showBalloon imgLot" title="슬라이드 이미지"><img src="/images/mainSlideImg1.jpg" alt="메인 슬라이드 이미지1" width="830" height="430"/></li>
+              <li class="imgLot"><img src="/images/mainSlideImg3.jpg" alt="" width="830" height="430"/></li>
+              <li class="imgLot"><img src="/images/mainSlideImg4.jpg" alt="" width="830" height="430"/></li>
+              <li class="imgLot"><img src="/images/mainSlideImg5.jpg" alt="" width="830" height="430"/></li>
+            </div>
+            <span class="right"><a href="qnaboard" onclick="return false"><img src="/images/btn_right.png" alt="다음"/></a></span>
+            <div class="slideText1">
+              <div class="slideTextSub">
+                <p>'역대 최대' 중장년을 위한 보람일자리 5600명 모집</p>
+              </div>
+              <div class="slideTextSub">
+                <p>끊김 없이 간다! 자전거 타고 정릉·청계천~한강까지</p>
+              </div>
+              <div class="slideTextSub">
+                <p>30대, 40대 여성이라면 구직지원금 신청해서 받으세요</p>
+              </div>
+              <div class="slideTextSub">
+                <p>어린이·청소년을 대상으로 시민상 수상후보자 공개모집</p>
+              </div>
+            </div>
+            <div class="control_panel">
+              <div class="control_button"></div>
+              <div class="control_button"></div>
+              <div class="control_button"></div>
+              <div class="control_button"></div>
+            </div>
+            <div class="slideGroup2">
+              <li class="showBalloon" title="슬라이드 이미지"><img src="/images/mainSlideImg2.jpg" alt="메인 슬라이드 이미지2" width="830" height="430"/></li>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div id="mainTopRight">
+        <ol>
+          <li class="weather">
+            <h2>서울시</h2>
+            <div class="cicon"></div>
+            <div class="ctemp"></div>
+            <div class="clowtemp">최저 온도 : </div>
+            <div class="chightemp">최고 온도 : </div>
+          </li>
+          <li class="showBalloon" title="서울시 카톡"><a href="login" tabindex="199"><img src="/images/slideRight3.png" width="350" alt="슬라이드 오른쪽 3"/></a></li>
+        </ol>
+      </div>
+    </div>
+    <div id="mainCenter" class="cf">
+      <div id="mainCenterService1" class="showBalloon" title="주요 서비스">
+        <ol>
+          <li>주요 서비스</li>
+          <li><a href="login" tabindex="200">전체 누리집 ＞</a></li>
+        </ol>
+      </div><hr/>
+      <div id="mainCenterService1Sub1" class="cf tim">
+        <ol>
+          <li class="showBalloon" title="공공서비스 예약"><a href="qnaboard" class="option1" tabindex="201"></a></li>
+          <li class="showBalloon" title="응답소"><a href="board" class="option2" tabindex="202"></a></li>
+          <li class="showBalloon" title="서울일자리"><a href="login" class="option3" tabindex="203"></a></li>
+          <li class="showBalloon" title="부동산정보"><a href="qnaboard" class="option4" tabindex="204"></a></li>
+          <li class="showBalloon" title="서울런"><a href="board" class="option5" tabindex="205"></a></li>
+          <li class="showBalloon" title="서울복지포털"><a href="login" class="option6" tabindex="206"></a></li>
+          <li class="showBalloon" title="서울거주포털"><a href="qnaboard" class="option7" tabindex="207"></a></li>
+          <li class="showBalloon" title="청년몽땅정보통"><a href="board" class="option8" tabindex="208"></a></li>
+          <li class="showBalloon" title="내 손안에 서울"><a href="qnaboard" class="option9" tabindex="209"></a></li>
+          <li class="showBalloon" title="상상대로 서울"><a href="login" class="option10" tabindex="210"></a></li>
+          <li class="showBalloon" title="전자책"><a href="board" class="option11" tabindex="211"></a></li>
+          <li class="showBalloon" title="시의회"><a href="qnaboard" class="option12" tabindex="212"></a></li>
+        </ol>
+      </div>
+      <div id="mainCenterService1Sub2" class="cf">
+        <ol>
+          <li><a href="board" tabindex="213">공공서비스 예약</a></li>
+          <li><a href="qnaboard" tabindex="214">응답소</a></li>
+          <li><a href="login" tabindex="215">서울일자리</a></li>
+          <li><a href="board" tabindex="216">부동산정보</a></li>
+          <li><a href="qnaboard" tabindex="217">서울런</a></li>
+          <li><a href="qnaboard" tabindex="218">서울복지포털</a></li>
+          <li><a href="login" tabindex="219">서울주거포털</a></li>
+          <li><a href="board" tabindex="220">청년몽땅정보통</a></li>
+          <li><a href="login" tabindex="221">내 손안에 서울</a></li>
+          <li><a href="qnaboard" tabindex="222">상상대로 서울</a></li>
+          <li><a href="board" tabindex="223">전자책</a></li>
+          <li><a href="login" tabindex="224">시의회</a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="mainCenterService2">
+    <div class="mainCenterService2Sub">
+      <ol>
+        <li class="showBalloon" title="스토리 in서울"><a href="board" tabindex="225"><img src="/images/mainCenterService2SubImg1.jpg" alt="IMGBANNER"/></a></li>
+        <li class="mainCenterService2SubImg showBalloon" title="빈대 신고 센터"><a href="qnaboard" tabindex="226"><img src="/images/mainCenterService2SubImg2.jpg" alt="IMGBANNER"/></a></li>
+        <li class="mainCenterService2SubImg showBalloon" title="수산물 방사능 결과"><a href="login" tabindex="227"><img src="/images/mainCenterService2SubImg3.jpg" alt="IMGBANNER"/></a></li>
+        <li class="mainCenterService2SubImg showBalloon" title="정부24"><a href="board" tabindex="228"><img src="/images/mainCenterService2SubImg4.jpg" alt="IMGBANNER"/></a></li>
+        <li class="mainCenterService2SubImg showBalloon" title="온라인 민원"><a href="login" tabindex="229"><img src="/images/mainCenterService2SubImg5.jpg" alt="IMGBANNER"/></a></li>
+      </ol>
+    </div>
+  </section>
+  <section id="maincenterWrap" class="cf">
+    <article id="mainCenterBoard">
+      <div id="mainCenterBoard2" class="showBalloon" title="이벤트 신청">
+        <div class="mainCenterBoardSub1">
+          <ol>
+            <li>이벤트 신청</li>
+            <li class="showBalloon" title="더보기"><a href="login" tabindex="230"></a></li>
+          </ol>
+        </div>
+        <div class="mainCenterBoardSub2">
+          <div class="mainCenterBoardSub3">
+            <ol>
+              <li class="centerBoardColor1">행정</li>
+              <li class="centerBoardColor1">행정</li>
+              <li class="centerBoardColor2">복지</li>
+              <li class="centerBoardColor1">행정</li>
+              <li class="centerBoardColor3">환경</li>
+            </ol>
+          </div>
+          <div class="mainCenterBoardSub4">
+            <ol>
+              <li><a href="board" tabindex="231">디지털 격차 해소에 동행할 어르신 모십니다!</a></li>
+              <li><a href="qnaboard" tabindex="232">'2024 서울시청 하늘광장 갤러리 전시작가' 공개</a></li>
+              <li><a href="login" tabindex="233">'성장과 배움의 동행을 실천할'서울런 멘토단' 800</a></li>
+              <li><a href="board" tabindex="234">2024 서울시민기자 모집</a></li>
+              <li><a href="qnaboard" tabindex="235">"덜 쓰고 덜 타면 혜택이 쏠쏠~"서울시,에코·승용차</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div id="mainCenterBoard3" class="showBalloon" title="이달의 행사 및 축제">
+        <div class="mainCenterBoardSub1">
+          <ol>
+            <li>이달의 행사 및 축제</li>
+            <li class="showBalloon" title="더보기"><a href="login" tabindex="236"></a></li>
+          </ol>
+        </div>
+        <div class="mainCenterBoardSub2">
+          <div class="mainCenterBoardSub3">
+            <ol>
+              <li class="centerBoardColor4">경제</li>
+              <li class="centerBoardColor5">문화</li>
+              <li class="centerBoardColor5">문화</li>
+              <li class="centerBoardColor3">환경</li>
+              <li class="centerBoardColor5">문화</li>
+            </ol>
+          </div>
+          <div class="mainCenterBoardSub4">
+            <ol>
+              <li><a href="login" tabindex="237">디지털 격차 해소에 동행할 어르신 모십니다!</a></li>
+              <li><a href="board" tabindex="238">'2024 서울시청 하늘광장 갤러리 전시작가' 공개</a></li>
+              <li><a href="qnaboard" tabindex="239">'성장과 배움의 동행을 실천할'서울런 멘토단' 800</a></li>
+              <li><a href="qnaboard" tabindex="240">2024 서울시민기자 모집</a></li>
+              <li><a href="board" tabindex="241">"덜 쓰고 덜 타면 혜택이 쏠쏠~"서울시,에코·승용차</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div id="mainCenterBoard4" class="showBalloon" title="자주 찾은 서비스">
+        <div class="mainCenterBoardSub1">
+          <ol>
+            <li>자주 찾은 서비스</li>
+          </ol>
+        </div>
+        <div class="mainCenterBoardSub5">
+          <div class="mainCenterBoardSub6">
+            <ul>
+              <li><a href="qnaboard" tabindex="242">법무행정(자치법규)</a></li>
+              <li><a href="board" tabindex="243">지방세납부</a></li>
+              <li><a href="login" tabindex="244">공공서비스예약</a></li>
+              <li><a href="qnaboard" tabindex="245">서울일자리포털</a></li>
+              <li><a href="board" tabindex="246">조직도</a></li>
+            </ul>
+          </div>
+          <div class="mainCenterBoardSub7">
+            <ul>
+              <li><a href="board" tabindex="247">서울안전누리</a></li>
+              <li><a href="qnaboard" tabindex="248">전자책(e-book)</a></li>
+              <li><a href="login" tabindex="249">평생학습포털</a></li>
+              <li><a href="board" tabindex="250">내손안에서울</a></li>
+              <li><a href="qnaboard" tabindex="251">에코마일리지</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div id="mainCenterInformation">
+      <div class="mainCenterInformationSub1">
+        <ol>
+          <li><span>분야별정보</span></li>
+        </ol>
+      </div>
+      <div class="mainCenterInformationSub2">
+        <ol>
+          <li class="showBalloon" title="주택"><a href="qnaboard" class="option13" tabindex="252"></a></li>
+          <li class="showBalloon" title="경제"><a href="board" class="option14" tabindex="253"></a></li>
+          <li class="showBalloon" title="교통"><a href="login" class="option15" tabindex="254"></a></li>
+          <li class="showBalloon" title="환경"><a href="qnaboard" class="option16" tabindex="255"></a></li>
+          <li class="showBalloon" title="복지"><a href="board" class="option17" tabindex="256"></a></li>
+          <li class="showBalloon" title="안전"><a href="qnaboard" class="option18" tabindex="257"></a></li>
+          <li class="showBalloon" title="문화"><a href="login" class="option19" tabindex="258"></a></li>
+          <li class="showBalloon" title="행정"><a href="board" class="option20" tabindex="259"></a></li>
+        </ol>
+      </div>
+      <div class="mainCenterInformationSub3">
+        <ol>
+          <li><a href="login" tabindex="260">주택</a></li>
+          <li><a href="board" tabindex="261">경제</a></li>
+          <li><a href="qnaboard" tabindex="262">교통</a></li>
+          <li><a href="qnaboard" tabindex="263">환경</a></li>
+          <li><a href="login" tabindex="264">복지</a></li>
+          <li><a href="board" tabindex="265">안전</a></li>
+          <li><a href="qnaboard" tabindex="266">문화</a></li>
+          <li><a href="login" tabindex="267">행정</a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="mainBottomWrap">
+    <article id="mainNotice1" class="showBalloon" title="새소식">
+      <div class="mainNotice1Sub1">
+        <ol>
+          <li>새소식</li>
+          <li><a href="board" tabindex="268"></a></li>
+          <li class="showBalloon" title="전체보기"><a href="login" tabindex="269">전체보기</a></li>
+        </ol>
+      </div>
+      <div class="mainNotice1Sub2">
+        <ol>
+          <li><a href="qnaboard" class="mainNotice1Sub2Img1" tabindex="270"><img src="/images/mainNotice1Sub2Img5.jpg" alt="newNotice05"/></a></li>
+          <li><a href="board" class="mainNotice1Sub2Img2" tabindex="271"><img src="/images/mainNotice1Sub2Img6.jpg" alt="newNotice06"/></a></li>
+          <li><a href="login" class="mainNotice1Sub2Img3" tabindex="272"><img src="/images/mainNotice1Sub2Img7.jpg" alt="newNotice07"/></a></li>
+          <li><a href="qnaboard" class="mainNotice1Sub2Img4" tabindex="273"><img src="/images/mainNotice1Sub2Img8.jpg" alt="newNotice08"/></a></li>
+        </ol>
+      </div>
+      <div class="mainNotice1Sub3">
+        <ol>
+          <li><a href="board" tabindex="274">자동차세 절감 혜택 가장 큰 1월에 연세액 납부하세요!</a></li>
+          <li><a href="login" tabindex="275">야간,휴일에도 진료하는 병원을 찾고 있다면? 우리아이 안심 의료기관을 이용해보세요</a></li>
+          <li><a href="qnaboard" tabindex="276">출근 시간 서울지하철 4호선,객실 의자 없는 열차 시범운행</a></li>
+          <li><a href="board" tabindex="277">31일까지 경유차 환경개선부담금 연납하고 10% 할인 받으세요</a></li>
+        </ol>
+      </div>
+      <div class="mainNotice1Sub4">
+        <ol>
+          <li><a href="qnaboard" class="mainNotice1Sub4Img1" tabindex="278"><img src="/images/mainNotice1Sub4Img5.png" alt="newNotice05"/></a></li>
+          <li><a href="board" class="mainNotice1Sub4Img2" tabindex="279"><img src="/images/mainNotice1Sub4Img6.jpg" alt="newNotice06"/></a></li>
+          <li><a href="qnaboard" class="mainNotice1Sub4Img3" tabindex="280"><img src="/images/mainNotice1Sub2Img2.jpg" alt="newNotice07"/></a></li>
+          <li><a href="login" class="mainNotice1Sub4Img4" tabindex="281"><img src="/images/mainNotice1Sub2Img5.jpg" alt="newNotice08"/></a></li>
+        </ol>
+      </div>
+      <div class="mainNotice1Sub5">
+        <ol>
+          <li><a href="board" tabindex="282">'더 촘촘해진 복지 안전망' 서울형 기초보장제도 생계급여 역대 최대 인상</a></li>
+          <li><a href="login" tabindex="283">서울인터넷(loT) 스마트보안등에 안전 디자인 더해 안심 귀갓길 조성</a></li>
+          <li><a href="qnaboard" tabindex="284">청소년이 만든 '서체 4종' 무료 배포, 자유롭게 사용하세요!</a></li>
+        </ol>
+      </div>
+    </article>
+    <article id="mainNotice2">
+      <div class="mainNotice2Sub1 showBalloon" title="서울영상">
+        <div class="mainNotice2Sub2">서울영상
+        </div>
+        <div class="mainNotice2Sub3">
+        </div>
+      </div>
+      <div class="mainNotice2Sub4 showBalloon" title="게시판">
+        <div class="mainNotice2Sub5">
+          <ol>
+            <li><a href="#tab01" class="on">서울소식</a></li>
+            <li><a href="#tab02">고시공고</a></li>
+            <li><a href="#tab03">입찰공고</a></li>
+            <li><a href="#tab04">채용시험</a></li>
+            <li><a href="#tab05">보도자료</a></li>
+            <li><a href="#tab06">이벤트</a></li>
+          </ol>
+        </div>
+        <div class="mainNotice2Sub6" id="tab01">
+          <div class="mainNotice2Sub7">
+            <ol>
+              <li class="red">고시공고</li>
+              <li class="blue">입찰공고</li>
+              <li class="brown">채용시험</li>
+              <li class="purple">보도자료</li>
+            </ol>
+          </div>
+          <div class="mainNotice2Sub8">
+            <ol>
+              <li><a href="board" tabindex="285">2024년「청년고용촉진 프로그램 기획 및 운영 전문가」서울시</a></li>
+              <li><a href="qnaboard" tabindex="286">시립중계노인전문요양원 위탁 운영체 선정결과 공고</a></li>
+              <li><a href="login" tabindex="287">미래청년기획단 (시간선택)임기제공무원 면접시험 합격자 공고</a></li>
+              <li><a href="board" tabindex="288">서울시장 동정-23일(화) 2024년 종로구 예산설명회</a></li>
+            </ol>
+          </div>
+        </div>
+        <div class="mainNotice2Sub6" id="tab02">
+          <div class="mainNotice2Sub7">
+            <ol>
+              <li class="blue">민원안내</li>
+              <li class="yellow">자료모음</li>
+              <li class="blue">시험정보</li>
+              <li class="red">자료보도</li>
+            </ol>
+          </div>
+          <div class="mainNotice2Sub8">
+            <ol>
+              <li><a href="board" tabindex="285">'서울시 어린이집 종이팩 자원순환 동행 협약' 재생제품</a></li>
+              <li><a href="qnaboard" tabindex="286">"민간임대주택특별법"에서 정한 "촉진지구" 문의 </a></li>
+              <li><a href="login" tabindex="287">건축공사업과 실내건축공사업 면허의 시공범위 </a></li>
+              <li><a href="board" tabindex="288">서울시내버스 2025년까지 완전 저상 교체 정책 질의 </a></li>
+            </ol>
+          </div>
+        </div>
+        <div class="mainNotice2Sub6" id="tab03">
+          <div class="mainNotice2Sub7">
+            <ol>
+              <li class="red">고시공고</li>
+              <li class="purple">입찰공고</li>
+              <li class="red">채용시험</li>
+              <li class="purple">보도자료</li>
+            </ol>
+          </div>
+          <div class="mainNotice2Sub8">
+            <ol>
+              <li><a href="board" tabindex="285">서울시내버스 2025년까지 완전 저상 교체 정책 질의</a></li>
+              <li><a href="qnaboard" tabindex="286">건축공사업과 실내건축공사업 면허의 시공범위 </a></li>
+              <li><a href="login" tabindex="287">미래청년기획단 (시간선택)임기제공무원 면접시험 합격자 공고</a></li>
+              <li><a href="board" tabindex="288">'서울시 어린이집 종이팩 자원순환 동행 협약' 재생제품</a></li>
+            </ol>
+          </div>
+        </div>
+        <div class="mainNotice2Sub6" id="tab04">
+          <div class="mainNotice2Sub7">
+            <ol>
+              <li class="blue">고시공고</li>
+              <li class="blue">입찰공고</li>
+              <li class="brown">채용시험</li>
+              <li class="yellow">보도자료</li>
+            </ol>
+          </div>
+          <div class="mainNotice2Sub8">
+            <ol>
+              <li><a href="board" tabindex="285">2024년「청년고용촉진 프로그램 기획 및 운영 전문가」서울시</a></li>
+              <li><a href="qnaboard" tabindex="286">시립중계노인전문요양원 위탁 운영체 선정결과 공고</a></li>
+              <li><a href="login" tabindex="287">'서울시 어린이집 종이팩 자원순환 동행 협약' 재생제품</a></li>
+              <li><a href="board" tabindex="288">서울시장 동정-23일(화) 2024년 종로구 예산설명회</a></li>
+            </ol>
+          </div>
+        </div>
+        <div class="mainNotice2Sub6" id="tab05">
+          <div class="mainNotice2Sub7">
+            <ol>
+              <li class="red">고시공고</li>
+              <li class="brown">입찰공고</li>
+              <li class="brown">채용시험</li>
+              <li class="blue">보도자료</li>
+            </ol>
+          </div>
+          <div class="mainNotice2Sub8">
+            <ol>
+              <li><a href="board" tabindex="285">2024년「청년고용촉진 프로그램 기획 및 운영 전문가」서울시</a></li>
+              <li><a href="qnaboard" tabindex="286">시립중계노인전문요양원 위탁 운영체 선정결과 공고</a></li>
+              <li><a href="login" tabindex="287">미래청년기획단 (시간선택)임기제공무원 면접시험 합격자 공고</a></li>
+              <li><a href="board" tabindex="288">서울시장 동정-23일(화) 2024년 종로구 예산설명회</a></li>
+            </ol>
+          </div>
+        </div>
+        <div class="mainNotice2Sub6" id="tab06">
+          <div class="mainNotice2Sub7">
+            <ol>
+              <li class="red">당첨 발표</li>
+              <li class="purple">Event정보</li>
+              <li class="red">당첨 발표</li>
+              <li class="red">당첨 발표</li>
+            </ol>
+          </div>
+          <div class="mainNotice2Sub8">
+            <ol>
+              <li><a href="board" tabindex="285">2024년「청년고용촉진 프로그램 기획 및 운영 전문가」서울시</a></li>
+              <li><a href="qnaboard" tabindex="286">시립중계노인전문요양원 위탁 운영체 선정결과 공고</a></li>
+              <li><a href="login" tabindex="287">미래청년기획단 (시간선택)임기제공무원 면접시험 합격자 공고</a></li>
+              <li><a href="board" tabindex="288">서울시장 동정-23일(화) 2024년 종로구 예산설명회</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="mainNotice2Sub9 showBalloon" title="광고">
+        <div class="autoSlideS">
+          <ul class="overWrap">
+            <li class="over">
+              <a href="#">
+                <h2>농촌문화체험</h2>
+                <p>힐링여행</p>
+                <p>오감만족 행복체험</p>
+              </a>
+            </li>
+            <li class="under01">
+              <a href="#" class="underPic01">
+                <p>서울시축제이야기</p>
+                <span href="#" class="underTex01"></span>
+              </a>
+            </li>
+            <li class="under02">
+              <a href="#" class="underPic02">
+                <p>서울시 농특산물</p>
+                <span href="#" class="underTex02"></span>
+              </a>
+            </li>
+            <li class="under03">
+              <a href="#">
+                <h2>감성여행</h2>
+                <p>일상에 지친 몸과 마음을</p>
+                <p>힐링할 수 있는 추천 감성여행</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </article>
+    <article id="mainNotice3" class="showBalloon" title="주목해야 할 정보">
+      <div class="slideButtonL">
+        <a href="#"><img src="/images/slideButtonLeft.png" alt="slideButtonLeft"/></a>
+      </div>
+      <div class="slideTitle">
+        <p>주목해야 할 정보</p>
+      </div>
+      <div class="slideButtonR">
+        <a href="#"><img src="/images/slideButtonRight.png" alt="slideButtonRight"/></a>
+      </div>
+      <div class="slide">
+        <ul>
+          <li><a href="#"><img src="/images/mainBottomBanner1.jpg" alt=""/></a></li>
+          <li><a href="#"><img src="/images/mainBottomBanner2.jpg" alt=""/></a></li>
+          <li><a href="#"><img src="/images/mainBottomBanner3.jpg" alt=""/></a></li>
+          <li><a href="#"><img src="/images/mainBottomBanner4.jpg" alt=""/></a></li>
+          <li><a href="#"><img src="/images/mainBottomBanner5.png" alt=""/></a></li>
+          <li><a href="#"><img src="/images/mainBottomBanner6.jpg" alt=""/></a></li>
+          <li><a href="#"><img src="/images/mainBottomBanner7.jpg" alt=""/></a></li>
+        </ul>
+      </div>
+    </article>
+    <div id="mainBottom">
+      <ol>
+        <li class="showBalloon" title="직속기관·사업소"><a href="qnaboard" tabindex="296">직속기관·사업소</a></li>
+        <li class="showBalloon" title="공사·출연기관"><a href="board" tabindex="297">공사·출연기관</a></li>
+        <li class="showBalloon" title="자치구"><a href="qnaboard" tabindex="298">자치구</a></li>
+        <li class="showBalloon" title="중앙행정기관"><a href="login" tabindex="299">중앙행정기관</a></li>
+        <li class="showBalloon" title="지방자치단체·유관기관"><a href="board" tabindex="300">지방자치단체·유관기관</a></li>
+      </ol>
+    </div>
+  </section>
 </div>
-
-<div data-role="page" id="onboarding1">
-	<div data-role="content">
-		<a href="#login" class="ui-btn-right">skip▶</a>
-		<img src="/images/onboarding/onboarding01.png" alt="온보딩1"/>
-		<h4>패키지 여행이<br/>
-			너무 힘드신가요?
-		</h4>
-		<div>
-			<a href="#onboarding2" data-transition="slide" data-role="button" data-mini="true">다음</a>
-		</div>
-	</div>
-</div>
-
-<div data-role="page" id="onboarding2">
-	<div data-role="content">
-		<a href="#login" class="ui-btn-right">skip▶</a>
-		<img src="/images/onboarding/onboarding02.png" alt="온보딩1"/>
-		<h4>Travel Maker가<br/>
-			도와드릴게요
-		</h4>
-		<div>
-			<a href="#onboarding3" data-transition="slide" data-role="button" data-mini="true">다음</a>
-		</div>
-	</div>
-</div>
-<div data-role="page" id="onboarding3">
-	<div data-role="content">
-		<a href="#login" class="ui-btn-right">skip▶</a>
-		<img src="/images/onboarding/onboarding03.png" alt="온보딩1"/>
-		<div>
-			<a href="#onboarding4" data-transition="slide" data-role="button" data-mini="true">다음</a>
-		</div>
-	</div>
-</div>
-<div data-role="page" id="onboarding4">
-	<div data-role="content">
-		<a href="#login" class="ui-btn-right">skip▶</a>
-		<img src="/images/onboarding/onboarding04.png" alt="온보딩1"/>
-		<div>
-			<a href="#onboarding5" data-transition="slide" data-role="button" data-mini="true">다음</a>
-		</div>
-	</div>
-</div>
-<div data-role="page" id="onboarding5">
-	<div data-role="content">
-		<a href="#login" class="ui-btn-right">skip▶</a>
-		<img src="/images/onboarding/onboarding05.png" alt="온보딩1"/>
-		<div>
-			<a href="#onboarding6" data-transition="slide" data-role="button" data-mini="true">다음</a>
-		</div>
-	</div>
-</div>
-<div data-role="page" id="onboarding6">
-	<div data-role="content">
-		<a href="#login" class="ui-btn-right">skip▶</a>
-		<img src="/images/onboarding/onboarding06.png" alt="온보딩1"/>
-		<div>
-			<a href="#login" data-transition="slide" data-role="button" data-mini="true">다음</a>
-		</div>
-	</div>
-</div>
-
-
-<div data-role="page" id="login" data-title="로그인 페이지">
-	<div data-role="content">
-		<div class="main_logo">
-			<img src="/images/title_logo.png" alt="메인 로고">
-		</div>
-		<input type="email" name="id" id="id" placeholder="이메일을 입력하세요."/>
-		<input type="password" name="pw" id="pw" placeholder="패스워드를 입력하세요."/>
-		<input type="submit" value="login" onClick="location.href='#main_page'"/>
-		<p class="forgetpw"><a href="#">비밀번호를 잊으셨나요?</a></p>
-		<p class="juststart"><a href="#main_page">일단 사용해 보기</a></p>
-		<p class="gojoin"><a href="#join">회원가입</a></p>
-	</div><!-- data-role="content" -->
-</div><!-- id="login" data-title="로그인 페이지" -->
-
-<div data-role="page" id="join" data-title="회원가입 페이지">
-	<div data-role="header" data-position="fixed" data-tap-toggle="false">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#login"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-	</div><!-- data-role="header" -->
-	<div data-role="content">
-		<h2>회원가입</h2>
-		<input type="text" name="name" id="name" placeholder="이름"/>
-		<input type="email" name="id" id="id" placeholder="이메일"/>
-		<input type="password" name="pw" id="pw" placeholder="비밀번호"/>
-		<input type="password" name="confirm_pw" id="confirm_pw" placeholder="비밀번호확인"/>
-		<input type="submit" value="가입하기" onClick="location.href='#login'"/>
-	</div><!-- data-role="content" -->
-</div><!-- id="join" data-title="회원가입 페이지" -->
-
-<div data-role="page" id="main_page" data-title="메인 페이지">
-	<div data-role="panel" id="panel1" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#main_page" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="내 사진"/></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터" />
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a href="#"><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- main_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed" data-tap-toggle="false">
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel1" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header" -->
-	<div data-role="content">
-		<div id="search">
-			<form action="#" method="get">
-				<input type="text" name="input_search" class="type_text" title="검색어 입력" placeholder="추천 여행지를 검색해 보세요">
-				<input type="submit" name="search_btn" value="검색" data-role="button" class="button">
-			</form>
-		</div>
-		<div id="nav_button" class="ui-bar ui-grid-b">
-			<div class="ui-block-a">
-				<a href="#hotel">
-					<img src="/images/hotel.png" height="30" alt="">
-					<br/>숙소
-				</a>
-			</div>
-			<div class="ui-block-b">
-				<a href="#ticket">
-					<img src="/images/ticket.png" height="30" alt="">
-					<br/>티켓
-				</a>
-			</div>
-			<div class="ui-block-b">
-				<a href="#board">
-					<img src="/images/board.png" height="30" alt="">
-					<br/>게시판
-				</a>
-			</div>
-		</div><!-- id="nav_button" -->
-		<div id="best_list_month">
-			<h2>이 달의 추천여행지</h2>
-			<div class="swiper mySwiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide"><a href="#main_detail">
-						<img src="/images/best_list_month_01.png" alt="" />
-						<p>
-							<span class="text_top">비타민C가 톡톡</span>
-							<span class="text_center">과일 카페에서<br/>즐기는 건강 충전</span>
-						</p>
-					</a></div>
-					<div class="swiper-slide"><a href="#main_detail">
-						<img src="/images/best_list_month_02.png" alt="" />
-						<p>
-							<span class="text_top">유유자적 걷고싶을 때</span>
-							<span class="text_center">걷기 좋은 동해안<br/>바다 산책</span>
-						</p>
-					</a></div>
-					<div class="swiper-slide"><a href="#main_detail">
-						<img src="/images/best_list_month_03.png" alt="" />
-						<p>
-							<span class="text_top">포근한 봄 정취 가득</span>
-							<span class="text_center">푸른 바다와 분홍빛을<br/>머금은 여수</span>
-						</p>
-					</a></div>
-					<div class="swiper-slide"><a href="#main_detail">
-						<img src="/images/best_list_month_04.png" alt="" />
-						<p>
-							<span class="text_top">1박2일 추천여행지</span>
-							<span class="text_center">낭만싣고 떠나는<br/>부산 바다열차</span>
-						</p>
-					</a></div>
-					<div class="swiper-slide"><a href="#main_detail">
-						<img src="/images/best_list_month_05.png" alt="" />
-						<p>
-							<span class="text_top">서울 근교 당일치기 여행</span>
-							<span class="text_center">오이도에서 만나는<br/>색다른 풍경</span>
-						</p>
-					</a></div>
-					<div class="swiper-slide"><a href="#main_detail">
-						<img src="/images/best_list_month_06.png" alt="" />
-						<p>
-							<span class="text_top">반값 가족여행</span>
-							<span class="text_center">반값으로 즐기는<br/>즐거운 강진 여행</span>
-						</p>
-					</a></div>
-					<div class="swiper-slide"><a href="#main_detail">
-						<img src="/images/best_list_month_07.png" alt="" />
-						<p>
-							<span class="text_top">흘러가는 봄이 아쉽다면,</span>
-							<span class="text_center">1박 2일로 순천<br/>봄 풍경 즐기러 가기</span>
-						</p>
-					</a></div>
-				</div>
-			</div>
-		</div><!-- id="best_list_month" -->
-		<div id="best_list_event">
-			<h2>전국 진행 중 축제/행사</h2>
-			<div class="swiper list_event">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide"><img src="/images/listimg1.png"/></div>
-					<div class="swiper-slide"><img src="/images/listimg2.png"/></div>
-					<div class="swiper-slide"><img src="/images/listimg3.png"/></div>
-					<div class="swiper-slide"><img src="/images/listimg4.png"/></div>
-					<div class="swiper-slide"><img src="/images/listimg5.png"/></div>
-				</div>
-			</div>
-		</div><!-- id="best_list_event" -->
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-on.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="main_page" data-title="메인 페이지" -->
-
-<div data-role="page" id="my_page" data-title="마이 페이지">
-	<div data-role="panel" id="panel2" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#my_page" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a href="#"><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel2" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<div class="my_info">
-			<img src="/images/setting-dark.png" height="20" alt="설정">
-			<span><img src="/images/myphoto.png" alt="내 사진" /></span>
-			<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-		</div>
-		<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-		<div class="my_list_one ui-bar ui-grid-b">
-			<div class="ui-block-a">
-				<a href="#my_travel">
-					<img src="/images/travellist.png" height="50" alt="내 여행지"/>
-					<br/>내 여행지
-				</a>
-			</div>
-			<div class="ui-block-b">
-				<a href="#schedule">
-					<img src="/images/schedule.png" height="50" alt="일정표"/>
-					<br/>일정표
-				</a>
-			</div>
-			<div class="ui-block-c">
-				<a onClick="location.href='tel:12341234'">
-					<img src="/images/customer.png" height="50" alt="고객센터"/>
-					<br/>고객센터
-				</a>
-			</div>
-		</div>
-		<div class="my_list_two ui-bar ui-grid-b">
-			<div class="ui-block-a">
-				<a href="#hotel">
-					<img src="/images/hotel.png" height="50" alt="숙소"/>
-					<br/>숙소
-				</a>
-			</div>
-			<div class="ui-block-b">
-				<a href="#ticket">
-					<img src="/images/ticket.png" height="50" alt="티켓,투어"/>
-					<br/>티켓
-				</a>
-			</div>
-			<div class="ui-block-c">
-				<a href="#board">
-					<img src="/images/board.png" height="50" alt="게시판"/>
-					<br/>게시판
-				</a>
-			</div>
-		</div>
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-on.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="my_page" data-title="마이 페이지" -->
-
-<div data-role="page" id="weather" data-title="날씨 페이지">
-	<div data-role="panel" id="panel3" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#weather" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel3" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<div class="weather_wrap">
-			<div class="weather_top">
-				<div class="temp"></div>
-				<div class="lowhightemp"></div>
-				<div class="icon"></div>
-				<div class="description"></div>
-				<div class="loc"></div>
-			</div>
-			<div class="weather_bottom cf">
-				<div class="am9 fl"></div>
-				<div class="pm12 fl"></div>
-				<div class="pm15 fl"></div>
-				<div class="pm18 fl"></div>
-				<div class="pm21 fl"></div>
-			</div>
-		</div>
-
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-on.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="weather" data-title="날씨 페이지" -->
-
-<div data-role="page" id="main_detail" data-title="메인 상세 페이지">
-	<div data-role="panel" id="panel4" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#main_detail" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel4" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<h2>망상해변</h2>
-		<h4>강원도 동해시</h4>
-		<div class="swiper photo_swiper">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide"><img src="/images/detail1.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="/images/detail2.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="/images/detail3.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="/images/detail4.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="/images/detail5.jpg" alt=""></div>
-				<div class="swiper-slide"><img src="/images/detail6.jpg" alt=""></div>
-			</div>
-			<div class="swiper-pagination"></div>
-		</div>
-		<h3>상세정보</h3>
-		<hr style="border-color: #0274DD;">
-		<div class="article">
-			<div class="detail_article">
-				<p>망상해변은 묵호항에서 북쪽으로 3km쯤 떨어져 있는 국민관광지로서 부근의 옥계, 경포 등과 함께 동해안의 유명 관광지이다. 넓은 백사장과 울창한 송림(수령 20~30년), 청정한 해수, 얕은 수심(경사도 2~4도, 평균 물 깊이 0.5~1.5m) 등 동해안 해수욕장 중 가장 넓고 쾌적한 환경을 갖추었으며, 주차장, 야영장, 샤워장, 공중화장실 등과 각종 편의시설이 잘 갖춰져 있어 관광객들이 이용하기에 편리하다.</p><br>
-				<p>해수욕장 바로 위에는 오토캠핑장이 있어 가족단위 관광객들에게 인기가 있다. 인근 천곡 자연동굴, 무릉계곡과 추암 촛대바위를 비롯하여 남쪽으로 간이 해수욕장(노봉, 대진, 어달, 한섬, 감추, 추암 해수욕장)이 즐비하다. 인근의 묵호항과 더불어 강릉~삼척을 잇는 해안 관광지 중 하나이며 오징어, 소라, 해삼, 멍게, 광어 등의 풍부한 해산물로 풍요로움과 넉넉함이 묻어난다.</p><br>
-			</div>
-			<div class="detail_article_close">더보기</div>
-			<div id="map" style="height:200px;"></div>
-			<div class="detail_info">
-				<table width="100%" cellspacing="10" cellpadding="0" class="detail_info_table">
-					<tr>
-						<th>문의 및 안내</th>
-						<td>033-530-2800 / 033-530-2234</td>
-					</tr>
-					<tr>
-						<th>홈페이지</th>
-						<td class="web" onClick="location.href='https://www.dh.go.kr/tour'">https://www.dh.go.kr/tour</td>
-					</tr>
-					<tr>
-						<th>주소</th>
-						<td>강원특별자치도 동해시 동해대로 6270-10</td>
-					</tr>
-					<tr>
-						<th>장애인 주차 안내</th>
-						<td>장애인 주차장 있음(해변 관광안내소 앞)_무장애 편의시설</td>
-					</tr>
-					<tr>
-						<th>접근로</th>
-						<td>출입구까지 경사로가 설치되어 있음(완만함)</td>
-					</tr>
-					<tr>
-						<th>홍보물</th>
-						<td>열린관광지 리플렛 있음</td>
-					</tr>
-					<tr>
-						<th>휠체어</th>
-						<td>대여 가능</td>
-					</tr>
-					<tr>
-						<th>출입통로</th>
-						<td>주 출입구는 경사로가 있어 휠체어 접근 가능함</td>
-					</tr>
-					<tr>
-						<th>화장실</th>
-						<td>장애인 화장실 있음</td>
-					</tr>
-					<tr>
-						<th>지체장애 기타상세</th>
-						<td>장애인 공용 샤워장 있음
-							장애인 전용 캠핑장 및 카라반 있음</td>
-					</tr>
-					<tr>
-						<th>점자블록</th>
-						<td>점자블록 있음(샤워장 앞)_시각장애인 편의시설</td>
-					</tr>
-					<tr>
-						<th>점자홍보물 및 점자표지판</th>
-						<td>촉지·음성 안내판 있음</td>
-					</tr>
-					<tr>
-						<th>유모차</th>
-						<td>대여 가능</td>
-					</tr>
-					<tr>
-						<th>영유아가족 기타상세</th>
-						<td>장애인 화장실 내 유아용 보호의자, 기저귀 교환대 있음</td>
-					</tr>
-				</table>
-			</div>
-			<div class="detail_info_close">더보기</div>
-		</div>
-	</div><!-- data-role="content" -->
-</div><!-- id="main_detail" data-title="메인 상세 페이지" -->
-
-<div data-role="page" id="my_travel" data-title="내 여행지 페이지">
-	<div data-role="panel" id="panel5" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#my_travel" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel5" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<button class="btn" style="width:75%;" type="button" onclick="location.href='#schedule'">
-			<img src="/images/addBtn.png" alt=""/>
-			<span>여행 일정 만들기</span>
-		</button>
-		<div class="nextTravel">
-			<span>다가오는 여행</span>
-			<img src="/images/mytravel01.jpg" alt=""/>
-			<span>부산 여행</span>
-			<p>2024.04.15 ~ 2024.04.20</p>
-		</div>
-		<div class="lastTravel" style="padding-top:20%;">
-			<span>지난 여행</span>
-			<img src="/images/mytravel02.jpg" alt=""/>
-			<span>강릉 여행</span>
-			<p>2024.02.04 ~ 2024.02.15</p>
-		</div>
-		<div class="lastTravel two">
-			<span style="visibility:hidden;">지난 여행</span>
-			<img src="/images/mytravel03.jpg" alt=""/>
-			<span>일본 여행</span>
-			<p>2023.11.30 ~ 2023.12.04</p>
-		</div>
-		<div class="lastTravel two">
-			<span style="visibility:hidden;">지난 여행</span>
-			<img src="/images/mytravel04.jpg" alt=""/>
-			<span>제주도 여행</span>
-			<p>2021.05.30 ~ 2021.06.11</p>
-		</div>
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="my_travel" data-title="내 여행지 페이지" -->
-
-<div data-role="page" id="schedule" data-title="일정 만들기 페이지">
-	<div data-role="panel" id="panel6" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#schedule" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel6" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<a href="#" onclick="location.href='#map_select'"><div class="mapBtn01">여행 장소</div></a>
-		<a href="#" onclick="location.href='#calendar'"><div class="mapBtn02">여행 일정</div></a>
-		<div class="sc">
-			<div id="sr"></div>
-		</div>
-		<div id="mapCore"></div>
-		<span></span><br>
-		<input id="list" placeholder="방문할 장소를 입력해주세요">
-		<button id="addButton"><img src="/images/plus.png" alt="" width="23px;"/></button>
-		<div id="todo-list"></div>
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-on.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="schedule" data-title="일정 만들기 페이지" -->
-
-<div data-role="page" id="map_select" data-title="장소 선택 페이지">
-	<div data-role="panel" id="panel7" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#map_select" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel7" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<div id="search">
-			<form action="#" method="get">
-				<input type="text" name="input_search" class="type_text" title="검색어 입력" placeholder="관광지/맛집/숙소 검색">
-				<input type="submit" name="search_btn" value="검색" data-role="button" class="button">
-			</form>
-		</div>
-		<div id="place">
-			<div class="selectedBox">
-				<div class="hd" style="height:140px; width:1px; float:left;"></div>
-				<div class="custom-result-section"></div>
-			</div>
-			<div class="placeList">
-				<div class="main-div">
-					<div class="jquery-multiple-select">
-						<ul>
-							<li>
-								<img src="/images/list01.jpg" alt=""/>
-								<p>섭지코지<br/>
-									<img src="/images/sText01.png" alt="" class="det"/>
-									<img src="/images/Button_fill.png" alt="" class="mapSelectBtn"/>
-								</p>
-							</li>
-							<li>
-								<img src="/images/list02.jpg" alt=""/>
-								<p>만장굴<br/>
-									<img src="/images/sText03.png" alt="" class="det"/>
-									<img src="/images/Button_fill.png" alt="" class="mapSelectBtn"/>
-								</p>
-							</li>
-							<li>
-								<img src="/images/list03.jpg" alt=""/>
-								<p>우도<br/>
-									<img src="/images/sText01.png" alt="" class="det"/>
-									<img src="/images/Button_fill.png" alt="" class="mapSelectBtn"/>
-								</p>
-							</li>
-							<li>
-								<img src="/images/list04.jpg" alt=""/>
-								<p>식물원<br/>
-									<img src="/images/sText03.png" alt="" class="det"/>
-									<img src="/images/Button_fill.png" alt="" class="mapSelectBtn"/>
-								</p>
-							</li>
-							<li>
-								<img src="/images/list05.jpg" alt=""/>
-								<p>한림공원<br/>
-									<img src="/images/sText01.png" alt="" class="det"/>
-									<img src="/images/Button_fill.png" alt="" class="mapSelectBtn"/>
-								</p>
-							</li>
-							<li>
-								<img src="/images/list06.jpg" alt=""/>
-								<p>금오름<br/>
-									<img src="/images/sText03.png" alt="" class="det"/>
-									<img src="/images/Button_fill.png" alt="" class="mapSelectBtn"/>
-								</p>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="map_select" data-title="장소 선택 페이지" -->
-
-<div data-role="page" id="calendar" data-title="일정 달력 페이지">
-	<div data-role="panel" id="panel8" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#calendar" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel8" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<p>여행날짜를 선택해주세요</p>
-		<!-- 캘린더 시작 -->
-		<div class="calender-pause">
-			<div class="calender-left">
-				<div class="column_right_grid calender">
-					<div class="cal1">
-						<div class="clndr">
-							<div class="clndr-controls">
-								<div class="clndr-control-button">
-									<p class="clndr-previous-button">previous</p>
-								</div>
-								<div class="month">July 2015</div>
-								<div class="clndr-control-button rightalign">
-									<p class="clndr-next-button">next</p>
-								</div>
-							</div>
-							<table class="clndr-table" border="0" cellspacing="0" cellpadding="0">
-								<thead>
-								<tr class="header-days">
-									<td class="header-day">SUN</td>
-									<td class="header-day">MON</td>
-									<td class="header-day">TUE</td>
-									<td class="header-day">WED</td>
-									<td class="header-day">THU</td>
-									<td class="header-day">FRI</td>
-									<td class="header-day">SAT</td>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td class="day past adjacent-month last-month calendar-day-2015-04-26">
-										<div class="day-contents">26</div>
-									</td>
-									<td class="day past adjacent-month last-month calendar-day-2015-04-27">
-										<div class="day-contents">27</div>
-									</td>
-									<td class="day past adjacent-month last-month calendar-day-2015-04-28">
-										<div class="day-contents">28</div>
-									</td>
-									<td class="day past adjacent-month last-month calendar-day-2015-04-29">
-										<div class="day-contents">29</div>
-									</td>
-									<td class="day past adjacent-month last-month calendar-day-2015-04-30">
-										<div class="day-contents">30</div>
-									</td>
-									<td class="day past calendar-day-2015-05-01">
-										<div class="day-contents">1</div>
-									</td>
-									<td class="day past calendar-day-2015-05-02">
-										<div class="day-contents">2</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="day past calendar-day-2015-05-03">
-										<div class="day-contents">3</div>
-									</td>
-									<td class="day past calendar-day-2015-05-04">
-										<div class="day-contents">4</div>
-									</td>
-									<td class="day past calendar-day-2015-05-05">
-										<div class="day-contents">5</div>
-									</td>
-									<td class="day past calendar-day-2015-05-06">
-										<div class="day-contents">6</div>
-									</td>
-									<td class="day past calendar-day-2015-05-07">
-										<div class="day-contents">7</div>
-									</td>
-									<td class="day past calendar-day-2015-05-08">
-										<div class="day-contents">8</div>
-									</td>
-									<td class="day past calendar-day-2015-05-09">
-										<div class="day-contents">9</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="day past event calendar-day-2015-05-10">
-										<div class="day-contents">10</div>
-									</td>
-									<td class="day past event calendar-day-2015-05-11">
-										<div class="day-contents">11</div>
-									</td>
-									<td class="day past event calendar-day-2015-05-12">
-										<div class="day-contents">12</div>
-									</td>
-									<td class="day past event calendar-day-2015-05-13">
-										<div class="day-contents">13</div>
-									</td>
-									<td class="day today event calendar-day-2015-05-14">
-										<div class="day-contents">14</div>
-									</td>
-									<td class="day calendar-day-2015-05-15">
-										<div class="day-contents">15</div>
-									</td>
-									<td class="day calendar-day-2015-05-16">
-										<div class="day-contents">16</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="day calendar-day-2015-05-17">
-										<div class="day-contents">17</div>
-									</td>
-									<td class="day calendar-day-2015-05-18">
-										<div class="day-contents">18</div>
-									</td>
-									<td class="day calendar-day-2015-05-19">
-										<div class="day-contents">19</div>
-									</td>
-									<td class="day calendar-day-2015-05-20">
-										<div class="day-contents">20</div>
-									</td>
-									<td class="day event calendar-day-2015-05-21">
-										<div class="day-contents">21</div>
-									</td>
-									<td class="day event calendar-day-2015-05-22">
-										<div class="day-contents">22</div>
-									</td>
-									<td class="day event calendar-day-2015-05-23">
-										<div class="day-contents">23</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="day calendar-day-2015-05-24">
-										<div class="day-contents">24</div>
-									</td>
-									<td class="day calendar-day-2015-05-25">
-										<div class="day-contents">25</div>
-									</td>
-									<td class="day calendar-day-2015-05-26">
-										<div class="day-contents">26</div>
-									</td>
-									<td class="day calendar-day-2015-05-27">
-										<div class="day-contents">27</div>
-									</td>
-									<td class="day calendar-day-2015-05-28">
-										<div class="day-contents">28</div>
-									</td>
-									<td class="day calendar-day-2015-05-29">
-										<div class="day-contents">29</div>
-									</td>
-									<td class="day calendar-day-2015-05-30">
-										<div class="day-contents">30</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="day calendar-day-2015-05-31">
-										<div class="day-contents">31</div>
-									</td>
-									<td class="day adjacent-month next-month calendar-day-2015-06-01">
-										<div class="day-contents">1</div>
-									</td>
-									<td class="day adjacent-month next-month calendar-day-2015-06-02">
-										<div class="day-contents">2</div>
-									</td>
-									<td class="day adjacent-month next-month calendar-day-2015-06-03">
-										<div class="day-contents">3</div>
-									</td>
-									<td class="day adjacent-month next-month calendar-day-2015-06-04">
-										<div class="day-contents">4</div>
-									</td>
-									<td class="day adjacent-month next-month calendar-day-2015-06-05">
-										<div class="day-contents">5</div>
-									</td>
-									<td class="day adjacent-month next-month calendar-day-2015-06-06">
-										<div class="day-contents">6</div>
-									</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 캘린더 끝 -->
-		<div class="box">
-			<span>2024.04.10 ~ 2024.04.14<img src="/images/cancle2.png" width="20" class="cancle"/></span>			</div>
-		<div class="addBtn">일정 추가하기</div>
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="calendar" data-title="일정 달력 페이지" -->
-
-<div data-role="page" id="hotel" data-title="숙소 게시판 페이지">
-	<div data-role="panel" id="panel9" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#hotel" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel9" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<div id="best_hotel">
-			<h2>일본 인기 호텔</h2>
-			<div class="swiper bestHotel">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel01.jpg" alt="" />
-							<p>
-									<span class="text_center">[신주쿠]<br/>그레이스 리 호텔<br/>
-										<span class="per">14%</span>
-										<span class="price">152,100원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star_empty.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel02.jpg" alt="" />
-							<p>
-									<span class="text_center">[도쿄]<br/>호텔 이스트 21<br/>
-										<span class="per">7%</span>
-										<span class="price">354,477원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel03.jpg" alt="" />
-							<p>
-									<span class="text_center">[시부야]<br/>올 데이 플레이스 시부야<br/>
-										<span class="per">15%</span>
-										<span class="price">300,241원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel04.jpg" alt="" />
-							<p>
-									<span class="text_center">[도쿄]<br/>인터컨티넨탈 도쿄 베이<br/>
-										<span class="per">5%</span>
-										<span class="price">202,177원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel05.jpg" alt="" />
-							<p>
-									<span class="text_center">[미나토]<br/>폰테누 그랜드 도쿄<br/>
-										<span class="per">6%</span>
-										<span class="price">222,412원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div><!-- id="best_hotel" -->
-		<div id="best_hotel">
-			<h2>제주 Best 호텔</h2>
-			<div class="swiper bestHotel">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel06.jpg" alt="" />
-							<p>
-									<span class="text_center">파르나스 호텔 제주<br/>
-										<span class="price">726,000원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star_empty.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel07.jpg" alt="" />
-							<p>
-									<span class="text_center">랜딩관 제주신화월드 호텔앤리조트<br/>
-										<span class="price">173,000원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel08.jpg" alt="" />
-							<p>
-									<span class="text_center">호텔더그랑 서귀포<br/>
-										<span class="per">19%</span>
-										<span class="price">91,698원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel09.jpg" alt="" />
-							<p>
-									<span class="text_center">그랜드 하얏트 제주<br/>
-										<span class="price">536,800원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel10.jpg" alt="" />
-							<p>
-									<span class="text_center">메종 글래드 제주<br/>
-										<span class="price">156,700원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div><!-- id="best_hotel" -->
-		<div id="best_hotel">
-			<h2>해외 특가</h2>
-			<div class="swiper bestHotel">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel11.jpg" alt="" />
-							<p>
-									<span class="text_center">[삿포로]<br/>호텔 포르자 삿포르 스테이션<br/>
-										<span class="per">27%</span>
-										<span class="price">76,295원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star_empty.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel12.jpg" alt="" />
-							<p>
-									<span class="text_center">[대만]<br/>포 포인츠 바이 쉐라톤 린커우<br/>
-										<span class="per">25%</span>
-										<span class="price">258,409원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel13.jpg" alt="" />
-							<p>
-									<span class="text_center">[베를린]<br/>호텔 인디고 베를린 쿠담<br/>
-										<span class="per">10%</span>
-										<span class="price">141,303원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel14.jpg" alt=""/>
-							<p>
-									<span class="text_center">[하와이]<br/>알로힐라니 리조트 와이키키 비치<br/>
-										<span class="per">5%</span>
-										<span class="price">426,039원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star_empty.png" class="star02">
-									</span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#">
-							<img src="/images/hotel15.jpg" alt="" />
-							<p>
-									<span class="text_center">[하노이]<br/>롯데 호텔 하노이<br/>
-										<span class="per">13%</span>
-										<span class="price">138,212원</span>
-										<img src="/images/star.png" class="star05">
-										<img src="/images/star.png" class="star04">
-										<img src="/images/star.png" class="star03">
-										<img src="/images/star.png" class="star02">
-										<img src="/images/star_empty.png" class="star01">
-									</span>
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div><!-- id="best_hotel" -->
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="hotel" data-title="숙소 게시판 페이지" -->
-
-<div data-role="page" id="ticket" data-title="티켓 게시판 페이지">
-	<div data-role="panel" id="panel10" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#ticket" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel10" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<div id="best_ticket">
-			<h2>일본 인기</h2>
-			<div class="swiper bestTicket">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket01.jpg" alt="" />
-							<p>
-								<span class="text_center">[오사카]<br/>주택 박물관 입장권<br/><span class="per">18%</span> <span class="price">5,300원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket02.jpg" alt="" />
-							<p>
-								<span class="text_center">[오사카]<br/>유니버셜스튜디오 1일 입장권<br/><span class="price">75,800원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket03.jpg" alt="" />
-							<p>
-								<span class="text_center">[즉시확정]<br/>오사카 가미가타 우키요에 박물관<br/><span class="price">4,300원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket04.jpg" alt="" />
-							<p>
-								<span class="text_center">[오사카]<br/>오사카 성 입장권<br/><span class="price">4,300원</span></span>
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div><!-- id="best_ticket" -->
-		<div id="best_ticket">
-			<h2>해외 인기</h2>
-			<div class="swiper bestTicket">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket05.jpg" alt="" />
-							<p>
-								<span class="text_center">[익스프레스라인]<br/>세부 오슬롭 & 캐녀닝 & 투말록<br/><span class="per">5%</span> <span class="price">159,100원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket06.jpg" alt="" />
-							<p>
-								<span class="text_center">[세부/스파]<br/>KING HANDS SPA 마사지<br/><span class="price">43,200원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket07.jpg" alt="" />
-							<p>
-								<span class="text_center">[다낭]<br/>바나힐~ 단독 왕복차량 + E티켓<br/><span class="per">19%</span> <span class="price">67,900원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket08.jpg" alt="" />
-							<p>
-								<span class="text_center">[다낭]<br/>바나힐 체크아웃 투어 #우리끼리<br/><span class="per">13%</span> <span class="price">85,000원</span></span>
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div><!-- id="best_ticket" -->
-		<div id="best_ticket">
-			<h2>파리 & 방콕 인기</h2>
-			<div class="swiper bestTicket">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket09.jpg" alt="" />
-							<p>
-								<span class="text_center">[파리]<br/>몽생미셸&지베르니 인상파 투어<br/><span class="per">11%</span> <span class="price">266,100원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket10.jpg" alt="" />
-							<p>
-								<span class="text_center">[방콕]<br/>짜뚜짝 주말시장 포인트 투어<br/><span class="price">19,370원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket11.jpg" alt="" />
-							<p>
-								<span class="text_center">[어게인,파리]<br/>루브르 감감투어<br/><span class="per">11%</span> <span class="price">63,600원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket12.jpg" alt=""/>
-							<p>
-								<span class="text_center">[방콕]<br/>특급열차 디지털 티켓<br/><span class="price">11,270원</span></span>
-							</p>
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="#main_detail">
-							<img src="/images/ticket13.jpg" alt="" />
-							<p>
-								<span class="text_center">[파리]<br/>뮤지엄 패스<br/><span class="per">19%</span> <span class="price">99,800원</span></span>
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div><!-- id="best_ticket" -->
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="ticket" data-title="티켓 게시판 페이지" -->
-
-<div data-role="page" id="board" data-title="게시판 페이지">
-	<div data-role="panel" id="panel11" class="panel" data-display="overlay" data-position="right">
-		<div class="main_mypage_header">
-			<a href="#" data-inline="true" class="main_mypage_setting">
-				<img src="/images/setting.png" height="15" alt="설정">
-			</a>
-			<a href="#" data-inline="true" class="main_mypage_alert">
-				<img src="/images/alram.png" height="15" alt="알림">
-			</a>
-			<a href="#board" data-rel="close" data-inline="true" class="main_mypage_close">
-				<img src="/images/exit.png" height="15" alt="닫기">
-			</a>
-			<div id="profile" class="cf">
-				<a href="#my_page">
-					<span><img src="/images/myphoto.png" alt="" /></span>
-					<p><span>Travel maker 님</span><span>새 알림&nbsp;&nbsp;21</span></p>
-				</a>
-			</div>
-		</div><!-- class="main_mypage_header" -->
-		<div class="main_mypage_body">
-			<button class="my_next" onclick="location.href='#my_travel'">나의 다음 일정 <span>D-80</span> days</button>
-			<div class="my_list_one ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#my_travel">
-						<img src="/images/travellist.png" height="30" alt="내 여행지"/>
-						<br/>내 여행지
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#schedule">
-						<img src="/images/schedule.png" height="30" alt="일정표"/>
-						<br/>일정표
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a onClick="location.href='tel:12341234'">
-						<img src="/images/customer.png" height="30" alt="고객센터"/>
-						<br/>고객센터
-					</a>
-				</div>
-			</div>
-			<div class="my_list_two ui-bar ui-grid-b">
-				<div class="ui-block-a">
-					<a href="#hotel">
-						<img src="/images/hotel.png" height="30" alt="숙소"/>
-						<br/>숙소
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#ticket">
-						<img src="/images/ticket.png" height="30" alt="티켓,투어"/>
-						<br/>티켓
-					</a>
-				</div>
-				<div class="ui-block-c">
-					<a href="#board">
-						<img src="/images/board.png" height="30" alt="게시판"/>
-						<br/>게시판
-					</a>
-				</div>
-			</div>
-		</div><!-- class="main_mypage_body" -->
-		<div class="main_mypage_footer">
-			<p>
-				<span>고객센터 1234-1234</span><br/>
-				<span>평일 09:00 ~ 16:00 / 토요일 09:00 ~ 12:00</span><br/>
-				<span>(평일 점심시간 12:00 ~ 13:00, 일요일/공휴일 휴무)</span>
-			</p>
-			<a><img src="/images/logout.png" height="15" alt="로그아웃"/>
-				<span>로그아웃</span></a>
-		</div><!-- class="main_mypage_footer" -->
-	</div><!-- my_page 메뉴패널 -->
-	<div data-role="header" data-position="fixed">
-		<a href="#" class="back" data-rel="back"><img src="/images/back.png" width="25" alt="이전" /></a>
-		<h1><a href="#main_page"><img src="/images/title_logo.png" height="40" alt="헤더 로고"/></a></h1>
-		<a href="#panel11" class="menu ui-btn-right"><img src="/images/menu.png" width="25" alt="menu"/></a>
-	</div><!-- data-role="header"  -->
-	<div data-role="content">
-		<div class="article01">
-			<div class="pic">
-				<img src="/images/boardimg01.png" alt=""/>
-			</div>
-			<div class="text">
-				<p>파리 근교 소도시 여행 리뷰!!!!</p>
-				<p>작년 다녀온 여행 중, 가장 기억에 남았던 여행은 역시나 유럽 자유여행, 코시국 이후 정말 오랜만에 다녀온 유럽 여행으로 좀 더 여유롭게 유럽 여행을 즐기고 싶은 마음에 좋아하는 파리를 마음껏 여행하기 위해서 하하하하하하하하하하하하하하하하하하하하하</p>
-				<div class="tagbox">
-					<div class="tag01">해외여행</div>
-					<div class="tag02">여행후기</div>
-					<div class="tag03">유럽</div>
-					<p class="clickedCountText01">175</p>
-					<div class="tag04 button01"><img src="/images/thumb.png" alt=""/></div>
-				</div>
-			</div>
-		</div>
-		<div class="article02">
-			<div class="pic">
-				<img src="/images/boardimg02.jpg" alt=""/>
-			</div>
-			<div class="text">
-				<p>제주도 택시 투어 2박3일 여행</p>
-				<p>제주도 4박 5일 여행 코스와 일정을 공유합니다. 첫 날 밤 비행기로 도착해서 실제 여행은 4일 정도였고, 공항을 기준으로 시계방향으로 제주도를 돌아보았어요! 제주도 여행코스 계획 중이시라면 하하하하하하하하하하하하하하하하하하</p>
-				<div class="tagbox">
-					<div class="tag01">국내여행</div>
-					<div class="tag02">여행후기</div>
-					<div class="tag03">제주도</div>
-					<p class="clickedCountText02">67</p>
-					<div class="tag04 button02"><img src="/images/thumb.png" alt=""/></div>
-				</div>
-			</div>
-		</div>
-		<div class="article03">
-			<div class="pic">
-				<img src="/images/boardimg03.png" alt=""/>
-			</div>
-			<div class="text">
-				<p>일본 여행책 추천</p>
-				<p>항상 믿고보는 여행책 셀프트래블 시리즈. 이번에 일본 홋카이도 편이 개정됐다. 뭐.. 이번이라고 하기엔 한달 전 출간된거긴 한데, 뭐 여튼! 오랜 시간이 지나 홋카이도 여행책 개정본이 나와버렸다 하하하하하하하하하하하하하하하하하하</p>
-				<div class="tagbox">
-					<div class="tag01">해외여행</div>
-					<div class="tag02">여행필수품</div>
-					<div class="tag03">일본</div>
-					<p class="clickedCountText03">244</p>
-					<div class="tag04 button03"><img src="/images/thumb.png" alt=""/></div>
-				</div>
-			</div>
-		</div>
-		<div class="article04">
-			<div class="pic">
-				<img src="/images/boardimg04.jpg" alt=""/>
-			</div>
-			<div class="text">
-				<p>혼자 대만여행 3박4일</p>
-				<p>대만 여행 첫째날! 설레이는 마음으로 인천에서 대만항공행 항공기를 탑승해 타오위안 공항에 도착했습니다. 바로 공항과 연결된 공항 MRT를 탑승해 타이페이 시내로 들어왔어요 이번에 예약한 호텔은 여자혼자 떠나는 여행이다보니 아무래도 번화가에 자리잡은 곳이 좋겠죠?</p>
-				<div class="tagbox">
-					<div class="tag01">해외여행</div>
-					<div class="tag02">여행후기</div>
-					<div class="tag03">대만</div>
-					<p class="clickedCountText04">34</p>
-					<div class="tag04 button04"><img src="/images/thumb.png" alt=""/></div>
-				</div>
-			</div>
-		</div>
-		<div class="article05">
-			<div class="pic">
-				<img src="/images/boardimg05.jpg" alt=""/>
-			</div>
-			<div class="text">
-				<p>여행을 가볍게!!</p>
-				<p>첫 제주도 여행을 성공적으로 마치게 해준 가방은 여행중!!! 뚜벅이인 저희에게 너무나 편리한 서비스였어요ㅠㅠㅠ 첫째날 이용해보고 너무 좋아서 이틀 연속 이용했네요~ 늦은 밤에 연락드렸는데도 친절하게 응대해주시고, 무엇보다도 사진이 진짜 너무 너무 귀여워요♡ㅠㅠㅠㅠㅠㅜㅜ</p>
-				<div class="tagbox">
-					<div class="tag01">국내여행</div>
-					<div class="tag02">여행후기</div>
-					<div class="tag03">제주도</div>
-					<p class="clickedCountText05">54</p>
-					<div class="tag04 button05"><img src="/images/thumb.png" alt=""/></div>
-				</div>
-			</div>
-		</div>
-		<div class="create">
-			<a href="#"><img src="/images/create.png" alt=""/></a>
-		</div>
-	</div><!-- data-role="content" -->
-	<div data-role="footer" class="ui-bar ui-grid-c" data-position="fixed" data-tap-toggle="false">
-		<div class="ui-block-a">
-			<a href="#main_page">
-				<img src="/images/home-off.png" height="23" alt="홈 바로가기">
-				<br/>홈
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<a href="#schedule">
-				<img src="/images/schdule-off.png" height="23" alt="일정표 바로가기">
-				<br/>일정표
-			</a>
-		</div>
-		<div class="ui-block-c">
-			<a href="#weather">
-				<img src="/images/weather-off.png" height="23" alt="날씨 바로가기">
-				<br/>날씨
-			</a>
-		</div>
-		<div class="ui-block-d">
-			<a href="#my_page">
-				<img src="/images/mypage-off.png" height="23" alt="마이페이지 바로가기">
-				<br/>마이페이지
-			</a>
-		</div>
-	</div><!-- data-role="footer" -->
-</div><!-- id="board" data-title="게시판 페이지" -->
-
 </body>
-<script>
-	// Define Class name where you want to select list , its must be ul and li
-	$('.jquery-multiple-select li').JqueryMultipleSelect({
-		ResultBackgroundColor:'#ffffff',
-		ResultClass:'custom-result-section', // Where you want to show result
-		AddExtraClassinResult:'custom-result-list', // Add Class in Result Div
-		AddExtraClassinSelectList:'custom-select-list',// All Class on div that contain select li
-		AddClassOnDeleteIcon:'custom-delete-icon', // Class on Result File cancel button
-	
-		});
-	</script>
 </html>
