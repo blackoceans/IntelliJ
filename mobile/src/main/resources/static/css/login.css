@@ -48,11 +48,11 @@ img{border: 0px;}
 			.loginBodyBox2{width:1420px; height:65px;}	
 				.loginBodyBox2 input{display:block; width:550px; height:50px; margin:0 auto;}
 			.loginBodyBox3{width:550px; height:65px; background-color:#087fea; margin: 0 auto;}	
-				.loginBodyBox3 > button{display:block; width:550px; height:65px; text-align:center; line-height:65px; color:white;}
+				.loginBodyBox3 > button{display:block; width:550px; height:65px; text-align:center; line-height:65px; color:white; background:#0d82eb;}
 			.loginBodyBox4{width:550px; height:65px; margin: 15px auto 0px; }
 				.loginBodyBox4-1{width:275px; height:65px; float:left;}
-					.loginBodyBox4-1 > a{width:100px; height:65px; display:block;}
-					.loginBodyBox4-1 > a > span{background-color:#ebf6ff; padding:10px; display:block; width:80px; border-radius:10px; border:1px solid #d1ebff; color:#333333;}
+					.loginBodyBox4-1 > button{width:105px; height:43px; display:block;}
+					.loginBodyBox4-1 > button > span{background-color:#ebf6ff; padding:10px; display:block; width:80px; border:1px solid #d1ebff; color:#333333;}
 				.loginBodyBox4-2{width:275px; height:65px; float:right; }
 					.loginBodyBox4-2 > a{display:block; text-align:right; width:156px; margin-left:120px; margin-top:10px; color:#333333;}
 			
