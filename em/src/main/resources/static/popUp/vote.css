@@ -1,0 +1,14 @@
+﻿*{margin:0; padding:0; border:0;}
+
+ul, li{list-style:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+.cb{ clear:both;}
+.cf:after{ content:''; display:block; clear:both;}
+
+#countwrap{width:500px; height:500px; background:url(../images/voteImg.png); border:3px solid #897154; margin:0 auto;}
+	#countment{margin:300px 0 0 0; text-align:center;}
+	.counter{margin: 20px 0 0 40px;}
+	#middle{margin:5px 5px 0px 5px;}
+	
+.close{float:right; padding:5px; margin-top:40px; border-radius:10px; width:80px; margin-right:10px; color:black; background-color:#fff9e3; cursor:pointer; font-weight:bold;}	

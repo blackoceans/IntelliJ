@@ -1,0 +1,101 @@
+﻿html{overflow-y: scroll;}
+*{margin:0px; padding: 0px;}
+li{list-style:none;}
+a{text-decoration: none;}
+body{font-family: "맑은 고딕", "돋움", sans-serif;}
+img{border: 0px;}
+.cf:after{content: ''; display: block; clear: both;}
+
+/* #wrap{width: 1420px; height: 5000px; margin:0 auto; background: url(../login.png) no-repeat center top; } */
+#mainTop2{width:1420px; height:157px; margin:0 auto; background-color:#0d82eb;}
+	.mainTopLeftLogo{width:290px; height: 157px; float:left;}
+	.mainTopLeftLogo img{display:block; padding-top:30px;}
+	#mainTopRightLogo1{width:1130px; height:157px;  float:left; }	
+		#mainTopRightLogo2{width: 1112px; height:112px; float:right; margin-top:30px;}
+			.inputBorder{width:500px; height:53px; float:left; padding-top:10px;}
+			.searchBar{width:496px; height:49px;  float:left; font-size:1.5em; font-size:0.8em; color:skyblue;}
+	
+
+#loginCenterWrap{width: 1420px; height:783px; margin:80px auto 0px;}
+	#loginCenter{width: 1420px; height: 290px;}
+		.loginImg{width:500px; height:290px; float:left; margin-left:100px;}
+		.loginInfo{width:770px; height:240px; float:left; line-height:25px; padding-top:50px; margin-left:50px;}
+		.border{padding:5px; border-radius:10px; background-color:#eef6ff; width:500px;}
+		.blue{color:#087fea;}
+		.red{color:#fd1919;}
+	#login{width:1420px; height:475px;}
+		#mainTopSlide{width:1420px; height: 100px;float:left; }
+			#mainTopSlide > input:nth-child(1) {display:none;}
+ 			#mainTopSlide > .tabImg > ul > li:nth-of-type(1) {display:none;}
+			#mainTopSlide > input:nth-child(1):checked ~ .tabImg > ul > li:nth-of-type(1) {display: block;}
+			
+			#mainTopSlide > input:nth-child(2) {display:none;}
+ 			#mainTopSlide > .tabImg > ul > li:nth-of-type(2) {display:none;}
+			#mainTopSlide > input:nth-child(2):checked ~ .tabImg > ul > li:nth-of-type(2) {display: block;}
+			
+			#mainTopSlide > input:nth-child(1):checked ~ .buttons > label:nth-of-type(1) {background-color:#ffffff; color:#0c82e9;}
+			#mainTopSlide > input:nth-child(1):checked ~ .buttons > label:nth-of-type(2) {background-color:#eeeeee;}
+			#mainTopSlide > input:nth-child(2):checked ~ .buttons > label:nth-of-type(2) {background-color:#ffffff; border-color:#0c82e9; color:#0c82e9;}
+			#mainTopSlide > input:nth-child(2):checked ~ .buttons > label:nth-of-type(1) {background-color:#eeeeee; border-color:#999999;}
+			
+			.buttons{float:left;}
+			.buttons > label:nth-of-type(1){float:left; width:708px; height:100px; background-color:#cccccc; border-radius:40px 40px 0px 0px; line-height:100px; text-align:center; font-size:1.2em; border: 3px solid #0c82e9; border-bottom:none; box-sizing:border-box; margin-left:1px; cursor:pointer;}
+			.buttons > label:nth-of-type(2){float:left; width:708px; height:100px; background-color:#cccccc; border-radius:40px 40px 0px 0px; line-height:100px; text-align:center; font-size:1.2em; border: 3px solid #999999; border-bottom:none; box-sizing:border-box; margin-left:1px; cursor:pointer;}
+			.buttons img{ margin-top:75px;}	
+		.loginBody{width:1420px; height:370px; float:left; }
+			.loginBodyBox1{width:1420px; height:65px; margin-top:100px;}
+				.loginBodyBox1 input{display:block; width:550px; height:50px; margin:0 auto;}
+			.loginBodyBox2{width:1420px; height:65px;}	
+				.loginBodyBox2 input{display:block; width:550px; height:50px; margin:0 auto;}
+			.loginBodyBox3{width:550px; height:65px; background-color:#087fea; margin: 0 auto;}	
+				.loginBodyBox3 > button{display:block; width:550px; height:65px; text-align:center; line-height:65px; color:white; background:#0d82eb;}
+			.loginBodyBox4{width:550px; height:65px; margin: 15px auto 0px; }
+				.loginBodyBox4-1{width:275px; height:65px; float:left;}
+					.loginBodyBox4-1 > button{width:105px; height:43px; display:block;}
+					.loginBodyBox4-1 > button > span{background-color:#ebf6ff; padding:10px; display:block; width:80px; border:1px solid #d1ebff; color:#333333;}
+				.loginBodyBox4-2{width:275px; height:65px; float:right; }
+					.loginBodyBox4-2 > a{display:block; text-align:right; width:156px; margin-left:120px; margin-top:10px; color:#333333;}
+			
+
+
+	#loginBottomInfo1{width:1420px; height: 400px; background-color: #f4f6f7; margin:0 auto;}
+		.loginBottomInfo1Box1{width:1420px; height:100px;}
+			.loginBottomInfo1Box1 > h2{font-size:1.1em; line-height:100px; padding-left:50px;}
+		.loginBottomInfo1Box2{width:1420px; height:100px; box-sizing:border-box;}
+			.loginBottomInfo1Box2 > p{padding-top:20px; padding-left:50px; float:left;}
+			.installBox > a{display:block; width:265px; height: 70px; border: 1px solid #0c82e9; float:right; margin-right:50px; background-color:white;}
+			.installBox > a > .installBoxText{display:block; width:147px; height:20px; margin:25px 0 0 0; float:right;}
+			.installBox > a > .installBoxImg{margin:26px 0 0 95px; display:block; float:left;}
+		.loginBottomInfo1Box3{width:1300px; height:130px; border:1px solid #999999; margin:0 auto;}
+			.loginBottomInfo1Box3-1{width:1300px; height:50px; border-bottom:1px solid #999999;}
+				.loginBottomInfo1Box3-1 > div{text-align:center; line-height:50px; font-weight:bold;}
+				.width300{width:300px; height:50px; float:left;}
+				.width500{width:500px; height:50px; float:left; border-left: 1px solid #999999; box-sizing:border-box;}
+			.loginBottomInfo1Box3-2{width:1300px; height:80px;}
+				.loginBottomInfo1Box3-2 > div{  font-weight:bold; height:80px; text-align:center;}
+				.fBox{padding-top:5px;}
+				.sBox{line-height:80px;}
+				.tBox{text-align:left;}
+				.tBox > p{padding:5px 0px;}
+			
+	#loginBottomInfo2{width:1329px; height:190px; border:1px solid #999999; margin:0 auto; margin-top:70px;}
+		.text{padding:44px 86px;}
+		.text a{color:#0e76e7; text-decoration:underline;}
+
+#loginBottomMenu{width: 1420px; height:60px; background-color: #aaaaaa; margin: 124px auto 0px;}
+
+#loginBottomCopy{height: 110px; background-color:#eeeeee;}
+
+/* 툴팁 */
+.balloon{background:#333333; color:#eeeeee; padding:5px; position: absolute; display:none; border-radius:10px; font-size:0.7em;}
+
+
+
+
+
+
+
+
+
+
+

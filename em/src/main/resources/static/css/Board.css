@@ -1,0 +1,89 @@
+﻿html{overflow-y: scroll;}
+*{margin:0px; padding: 0px;}
+li{list-style:none;}
+a{text-decoration: none;}
+body{font-family: "맑은 고딕", "돋움", sans-serif;}
+img{border: 0px;}
+.cf:after{content: ''; display: block; clear: both;}
+
+
+#mainTop2{width:1420px; height:157px; margin:0 auto; background-color:#0d82eb;}
+	.mainTopLeftLogo{width:290px; height: 157px; float:left;}
+	.mainTopLeftLogo img{display:block; padding-top:30px;}
+	#mainTopRightLogo1{width:1130px; height:157px;  float:left; }	
+		#mainTopRightLogo2{width: 1112px; height:112px; float:right; margin-top:30px;}
+			.inputBorder{width:500px; height:53px; float:left; padding-top:10px;}
+			.searchBar{width:496px; height:49px;  float:left; font-size:1.5em; font-size:0.8em; color:skyblue;}
+			
+#subBodyWrap{width:1420px; margin: 0 auto;}		
+	#sideMenu{width:210px; float:left;}
+		.sideMenuTitle{width: 210px; height:120px; line-height: 120px; text-align:center; border-bottom:3px solid #999999;}
+		#sideMenu > nav > ol > li{width:200px; height:50px; line-height:50px; padding-left:10px;}
+		#sideMenu > nav > ol > li:hover{background-color:#0d82eb;}
+		#sideMenu > nav > ol > li:hover > a{color:white;}
+		#sideMenu > nav > ol > li > a{display:block; color:#333333; 	font-weight:bold;}
+		.sideMenuSub{display:none;}
+
+		#subHeader{width:1124px; height:240px; float: right;}
+			.subHeader1{width:1124px; height:150px;}
+				.subHeader1 > ol > li:nth-of-type(1){text-align:center; color:#333333; font-size:2.5em; line-height: 150px; float:left; width:1000px;}
+				.subHeader1 > ol > li:nth-of-type(2){width:124px; float:right; height:150px;}
+				.subHeader1 > ol > li > a{display:block; background:url(../../images/mainCenterBoardIconSet.png)no-repeat 8px -192px; float:right; width:50px; height:50px; margin-top: 60px; border: 1px solid #999999;}
+			.subHeader2{width:1124px; height:90px;}
+				.subHeader2 > ol > li{width:1124px; text-align:center; box-sizing:border-box; padding-right:110px;}
+				.subHeader2 > ol > li > a{color:#333333;}
+
+
+	#subSearchBar{width:1124px; height: 246px; float: right; box-sizing:border-box; border: 1px solid #999999;}
+		.searchBox1{width:1124px; height:81px; border-bottom:1px solid #999999;}
+			.searchBoxHead{width:200px; height:80px; line-height:81px; text-align:center; background-color:#f4f6f7; float:left;}
+			.searchBoxNav1{width:924px; height:81px; line-height: 81px; float:left;}
+				.searchBoxNav1 > a{display:block; float:left; width:102px; height:20px; text-align:center; color:#333333;}
+				.searchBoxNav1 > a:hover{text-decoration:underline; color:#0d82eb;}
+			.searchBoxNav2{width:924px; height:81px; line-height: 81px; float:left;}
+				.searchBoxNav2 > a{display:block; float:left; width:100px; height: 20px; text-align:center; color:#333333;}
+				.searchBoxNav2 > span{float:left;}
+				.searchBoxNav2 > input{height:40px; width:170px; margin-left:30px; float:left; margin-top:20px;}
+				.searchBoxNav2 > img{display:block; margin-top:29px; float:left; margin-left:5px;}
+			.searchBoxNav3{width:924px; height:81px; line-height: 81px; float:left; margin-top:20px;}
+				.searchBoxNav3 > input{width: 700px; height:40px; margin-left:20px; float:left;}
+				.btnFind{width:80px; height:43px; margin:0px 5px ; display:block; float:left;}
+				.btnClear{width:80px; height:43px; margin:0px 5px ; display:block; float:left;}		
+		.searchBox2{width:1124px; height:81px; border-bottom:1px solid #999999;}
+		.searchBox3{width:1124px; height:81px;}
+
+	#sublist{width:1124px; height: 2220px; float: right; margin-top:50px; border-top:1px solid #999999;}
+		#sublist h2{font-size:1.3em;}
+		#sublist a{color:#333333;}
+		.list01{width:1084px; height:240px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}
+			.list01 img{display:block; height:240px; float:left; margin-right:20px;}
+		.list02{width:1084px; height:120px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}
+		.list03{width:1084px; height:140px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}
+		.list04{width:1084px; height:140px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}
+		.list05{width:1084px; height:120px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}
+		.list06{width:1084px; height:140px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}		
+		.list07{width:1084px; height:240px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}		
+			.list07 img{display:block; height:240px; float:left; margin-right:20px;}
+		.list08{width:1084px; height:270px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}				
+		.list09{width:1084px; height:140px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}				
+		.list10{width:1084px; height:170px; padding: 20px 20px; line-height: 2; border-bottom:1px solid #999999;}
+			.list10 img{display:block; height:170px; float:left; margin-right:20px;}
+		.blue{color:#028ab6;}	
+		.green{color:#599100;}	
+		.brown{color:#d76000;}	
+		.purple{color:#9b64d3;}	
+		.red{color:#ea768f;}	
+	#buttonWrap{width:1420px; height:32px; margin:0 auto; }
+		.buttonSub{margin-left: 580px;}
+			.beforebutton{width:70px; float:left;}
+				.button1{float:left; width:32px; height:32px; background:#eeeeee; border:1px solid #dddddd; color:#333333; margin-right:2px;}
+				.button2{float:left; width:32px; height:32px; background:#eeeeee; border:1px solid #dddddd; color:#333333; margin-left:2px;}
+		.afterbutton{width:70px; float:left;}
+		
+		.pageNumber{width:370px; height:40px; margin:0px 15px 0px 15px; float:left;}
+			.activeNumber{background:#f0f3fa; color:#475cb8; line-height:32px;}	
+			.page{float:left; width:32px; height:32px; color:#333333; margin-left:5px; line-height:32px; text-align:center;}
+			.page > a{display:block;}	
+			
+/* 툴팁 */
+.balloon{background:#333333; color:#eeeeee; padding:5px; position: absolute; display:none; border-radius:10px; font-size:0.7em;}			
